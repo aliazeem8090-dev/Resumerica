@@ -2,6 +2,10 @@
   RewriteEngine On
   RewriteRule ^cloudflare-worker/ - [F,L]
   RewriteRule ^\.git - [F,L]
+
+  # Canonical URL: redirect explicit /index.html to / so the address bar never shows it
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ / [R=301,L]
 </IfModule>
 
 <Files "README.md">
