@@ -92,7 +92,7 @@ PHP Configuration, or your app's error log) if the CV review request doesn't sho
 ## Consultation booking (Calendly)
 
 "Book consultation" buttons across the site open a Calendly popup widget pointed at
-`https://calendly.com/resumericaconsultancy/30min` (see `openCalendly()` in `index.html`). This
+`https://calendly.com/beingeesa/30min` (see `openCalendly()` in `index.html`). This
 is entirely client-side, Calendly handles availability, confirmations, reminders and video links
 on its own; there's no PHP backend involved for bookings. To change the event, update the URL in
 that one function and in the `<script src="https://assets.calendly.com/assets/external/widget.js">`
