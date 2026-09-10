@@ -1,6 +1,6 @@
 <?php
 /**
- * Shared helpers for book.php and review.php.
+ * Shared helpers for review.php.
  */
 
 // Buffer everything so a stray BOM/whitespace in config.php (e.g. saved as
@@ -120,14 +120,6 @@ function send_mail($to, $subject, $html, $replyTo = null, $attachments = null) {
 
 function row($k, $v) {
     return $v ? "<tr><td style=\"padding:4px 12px 4px 0;color:#6A7286\">{$k}</td><td>" . esc($v) . "</td></tr>" : '';
-}
-
-function booking_html($f) {
-    $rows = row('Name', $f['name']) . row('Email', $f['email']) . row('Phone', $f['phone'])
-        . row('Service', $f['service']) . row('Preferred date', $f['date']) . row('Time', $f['time']) . row('Goal', $f['goal']);
-    return "<h2 style=\"font-family:Georgia,serif;color:#14264A\">New consultation request</h2>"
-        . "<table style=\"font-family:Arial,sans-serif;font-size:14px\">{$rows}</table>"
-        . "<p style=\"font-family:Arial,sans-serif;font-size:13px;color:#6A7286\">Hit reply to respond directly to " . esc($f['email']) . ".</p>";
 }
 
 function review_lead_html($email, $roles, $salary, $notes, $fileName) {

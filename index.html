@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Resumerica: Your American Dream. One Resume Away.</title>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <style>
   :root{
     --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -231,7 +233,7 @@
       <a href="blog.html">Insights</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <button class="btn btn-accent" style="white-space:nowrap" onclick="openBooking('General consultation')">Book<span class="nav-btn-full"> consultation</span></button>
+    <button class="btn btn-accent" style="white-space:nowrap" onclick="openCalendly()">Book<span class="nav-btn-full"> consultation</span></button>
   </div>
 </header>
 
@@ -246,7 +248,7 @@
       <div class="hero-cta">
         <a href="#review" class="btn btn-accent">Get a free CV review
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <button class="btn btn-ghost" onclick="openBooking('General consultation')">Book a consultation</button>
+        <button class="btn btn-ghost" onclick="openCalendly()">Book a consultation</button>
       </div>
       <div class="hero-bul">
         <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> No account needed</span>
@@ -391,27 +393,27 @@
       <p>Every engagement can start with your free CV review. From there, choose exactly what you need: à la carte, no packages you don't want.</p>
     </div>
     <div class="menu reveal">
-      <div class="mitem" onclick="openBooking('Resume · $99')">
+      <div class="mitem" onclick="openCalendly()">
         <div><div class="mname">Resume <span class="mtag">Most requested</span></div><div class="mdesc">ATS-optimized, role-targeted, rewritten by hand to clear the machine.</div></div>
         <div class="mprice">$99</div><div class="mbook">Book →</div>
       </div>
-      <div class="mitem" onclick="openBooking('LinkedIn Profile Revamp · $75')">
+      <div class="mitem" onclick="openCalendly()">
         <div><div class="mname">LinkedIn Profile Revamp</div><div class="mdesc">Headline to About, tuned so recruiters find you and stay.</div></div>
         <div class="mprice">$75</div><div class="mbook">Book →</div>
       </div>
-      <div class="mitem" onclick="openBooking('Career Biography · $50')">
+      <div class="mitem" onclick="openCalendly()">
         <div><div class="mname">Career Biography</div><div class="mdesc">A polished professional bio for profiles, bids and speaking.</div></div>
         <div class="mprice">$50</div><div class="mbook">Book →</div>
       </div>
-      <div class="mitem" onclick="openBooking('Cover Letter · $40')">
+      <div class="mitem" onclick="openCalendly()">
         <div><div class="mname">Cover Letter</div><div class="mdesc">A role-specific letter that passes AI reads and sounds like you.</div></div>
         <div class="mprice">$40</div><div class="mbook">Book →</div>
       </div>
-      <div class="mitem" onclick="openBooking('Interview Toolkit · $30')">
+      <div class="mitem" onclick="openCalendly()">
         <div><div class="mname">Interview Toolkit</div><div class="mdesc">Frameworks and mock questions for AI-scored and live rounds.</div></div>
         <div class="mprice">$30</div><div class="mbook">Book →</div>
       </div>
-      <div class="mitem" onclick="openBooking('Follow-up / Thank-you Letter · $25')">
+      <div class="mitem" onclick="openCalendly()">
         <div><div class="mname">Follow-up / Thank-you Letter</div><div class="mdesc">The note that keeps you top of mind after the interview.</div></div>
         <div class="mprice">$25</div><div class="mbook">Book →</div>
       </div>
@@ -444,8 +446,8 @@
       <div class="flagwash"></div>
       <span class="kick" style="justify-content:center;margin-bottom:18px">Talk to a strategist</span>
       <h2>Your American dream. One resume away.</h2>
-      <p>Book a free 20-minute consultation. We'll review your resume, pinpoint what's costing you interviews, and map the fastest path to yes.</p>
-      <button class="btn btn-accent" style="font-size:15px;padding:15px 30px" onclick="openBooking('Free 20-minute strategy call')">Book my consultation</button>
+      <p>Book a free 30-minute consultation. We'll review your resume, pinpoint what's costing you interviews, and map the fastest path to yes.</p>
+      <button class="btn btn-accent" style="font-size:15px;padding:15px 30px" onclick="openCalendly()">Book my consultation</button>
     </div>
   </div>
 </section>
@@ -476,37 +478,6 @@
     <small>© 2026 Resumerica. Statistics cited from BLS JOLTS, LinkedIn, BambooHR, and 2026 industry hiring reports.</small>
   </div>
 </footer>
-
-<!-- BOOKING MODAL -->
-<div class="modal" id="modal" aria-modal="true" role="dialog">
-  <div class="modal-bg" onclick="closeBooking()"></div>
-  <div class="modal-card">
-    <button class="close" onclick="closeBooking()" aria-label="Close">×</button>
-    <div id="modalForm">
-      <span class="pill">Book a consultation</span>
-      <h3>Let's map your path to the interview.</h3>
-      <div class="ctx" id="modalCtx"></div>
-      <div class="field"><label>Full name</label><input id="bkName" placeholder="Jordan Rivera"></div>
-      <div class="grid2">
-        <div class="field"><label>Email</label><input id="bkEmail" type="email" placeholder="you@email.com"></div>
-        <div class="field"><label>Phone (optional)</label><input id="bkPhone" placeholder="(555) 010-2026"></div>
-      </div>
-      <div class="grid2">
-        <div class="field"><label>Preferred date</label><input id="bkDate" type="date"></div>
-        <div class="field"><label>Time</label><select id="bkTime"><option>9:00 AM</option><option>11:00 AM</option><option>1:00 PM</option><option>3:00 PM</option><option>5:00 PM</option></select></div>
-      </div>
-      <input id="bkWebsite" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-      <div class="field"><label>What do you want to fix?</label><textarea id="bkGoal" placeholder="e.g. Getting no callbacks for senior PM roles"></textarea></div>
-      <button class="btn btn-accent" style="width:100%;margin-top:18px" id="bkSubmit" onclick="submitBooking()">Request my consultation</button>
-    </div>
-    <div id="modalOk" class="modal-ok" style="display:none">
-      <svg class="badge" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <h3>Request received.</h3>
-      <p style="color:var(--muted);margin-top:10px" id="okMsg"></p>
-      <button class="btn btn-navy" style="margin-top:20px" onclick="closeBooking()">Done</button>
-    </div>
-  </div>
-</div>
 
 <!-- FREE CV REVIEW MODAL -->
 <div class="modal" id="reviewModal" aria-modal="true" role="dialog">
@@ -548,33 +519,12 @@ function runCount(el){
   const t=setInterval(()=>{cur+=inc;if(cur>=to){cur=to;clearInterval(t);}el.textContent=pre+cur.toFixed(dec)+suf;},22);
 }
 
-let bookingCtx='';
-function openBooking(ctx){
-  bookingCtx=ctx||'';
-  document.getElementById('modalCtx').textContent=ctx?('Focus: '+ctx):'';
-  document.getElementById('modalForm').style.display='block';
-  document.getElementById('modalOk').style.display='none';
-  document.getElementById('modal').classList.add('show');document.body.style.overflow='hidden';
-}
-function closeBooking(){document.getElementById('modal').classList.remove('show');document.body.style.overflow='';}
-async function submitBooking(){
-  const v=id=>document.getElementById(id).value.trim();
-  const name=v('bkName'),email=v('bkEmail'),phone=v('bkPhone'),date=v('bkDate'),time=v('bkTime'),goal=v('bkGoal');
-  if(!name||!email){toast('Please add your name and email.');return;}
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){toast('Please enter a valid email.');return;}
-  const btn=document.getElementById('bkSubmit');btn.disabled=true;const orig=btn.textContent;btn.textContent='Sending…';
-  try{
-    const res=await fetch('/api/book.php',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name,email,phone,date,time,goal,service:bookingCtx,website:v('bkWebsite')})});
-    const data=await res.json().catch(()=>({}));
-    if(!res.ok)throw new Error(data.error||'Request failed');
-    const slot=date?('a slot on '+date+' at '+time):('a '+time+' slot');
-    document.getElementById('modalForm').style.display='none';document.getElementById('modalOk').style.display='block';
-    document.getElementById('okMsg').textContent=`Thanks, ${name.split(' ')[0]}. We've received your request for ${slot}. `+
-      (data.confirmed?`A confirmation is on its way to ${email}.`:`We'll confirm by email at ${email} shortly.`);
-  }catch(err){
-    console.error(err);toast("Couldn't send your request. Please try again.");
-  }finally{btn.disabled=false;btn.textContent=orig;}
+function openCalendly(){
+  if(window.Calendly){
+    Calendly.initPopupWidget({url:'https://calendly.com/resumericaconsultancy/30min'});
+  }else{
+    window.open('https://calendly.com/resumericaconsultancy/30min','_blank');
+  }
 }
 
 function openReview(){
@@ -617,7 +567,7 @@ async function submitReview(){
   }finally{btn.disabled=false;btn.textContent=orig;}
 }
 
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeBooking();closeReview();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeReview();}});
 
 function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 let toastTimer;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3600);}
