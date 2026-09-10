@@ -1,8 +1,6 @@
 <?php
 /**
- * Shared helpers for scan.php and book.php.
- * Mirrors the logic in src/worker.js (the Cloudflare Worker version) so both
- * backends behave identically.
+ * Shared helpers for book.php and review.php.
  */
 
 // Buffer everything so a stray BOM/whitespace in config.php (e.g. saved as
@@ -89,11 +87,15 @@ function esc($s) {
     return htmlspecialchars((string)($s ?? ''), ENT_QUOTES, 'UTF-8');
 }
 
-function send_mail($to, $subject, $html, $replyTo = null) {
+/**
+ * $attachments (optional): array of ['filename' => string, 'content' => base64 string]
+ */
+function send_mail($to, $subject, $html, $replyTo = null, $attachments = null) {
     if (!defined('RESEND_API_KEY') || RESEND_API_KEY === '' || !$to) return false;
     $from = (defined('FROM_EMAIL') && FROM_EMAIL !== '') ? FROM_EMAIL : 'Resumerica <onboarding@resend.dev>';
     $payload = ['from' => $from, 'to' => [$to], 'subject' => $subject, 'html' => $html];
     if ($replyTo) $payload['reply_to'] = $replyTo;
+    if ($attachments) $payload['attachments'] = $attachments;
 
     $ch = curl_init('https://api.resend.com/emails');
     curl_setopt_array($ch, [
@@ -104,7 +106,7 @@ function send_mail($to, $subject, $html, $replyTo = null) {
             'Content-Type: application/json',
         ],
         CURLOPT_POSTFIELDS => json_encode($payload),
-        CURLOPT_TIMEOUT => 20,
+        CURLOPT_TIMEOUT => 30,
     ]);
     $res = curl_exec($ch);
     $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -128,32 +130,11 @@ function booking_html($f) {
         . "<p style=\"font-family:Arial,sans-serif;font-size:13px;color:#6A7286\">Hit reply to respond directly to " . esc($f['email']) . ".</p>";
 }
 
-function report_html($r) {
-    $cats = '';
-    foreach (($r['categories'] ?? []) as $c) {
-        $cats .= '<li>' . esc($c['name'] ?? '') . ': <b>' . esc($c['score'] ?? '') . '</b> — ' . esc($c['note'] ?? '') . '</li>';
-    }
-    $str = '';
-    foreach (($r['strengths'] ?? []) as $s) $str .= '<li>' . esc($s) . '</li>';
-    $iss = '';
-    foreach (($r['issues'] ?? []) as $i) {
-        $iss .= '<li><b>' . esc($i['problem'] ?? '') . '</b><br>Fix: ' . esc($i['fix'] ?? '') . '</li>';
-    }
-    $gaps = implode(', ', array_map('esc', $r['keywordGaps'] ?? []));
-
-    $html = '<div style="font-family:Arial,sans-serif;font-size:14px;color:#14264A;line-height:1.5">'
-        . '<h3>ATS score: ' . esc($r['atsScore'] ?? '') . '/100 — ' . esc($r['verdict'] ?? '') . '</h3><p>' . esc($r['summary'] ?? '') . '</p>'
-        . '<h4>Breakdown</h4><ul>' . $cats . '</ul>'
-        . '<h4>What\'s working</h4><ul>' . $str . '</ul>'
-        . '<h4>What to fix</h4><ul>' . $iss . '</ul>';
-    if ($gaps) $html .= '<h4>Missing keywords</h4><p>' . $gaps . '</p>';
-    return $html . '</div>';
-}
-
-function lead_html($email, $r, $fileName) {
-    $rows = row('Email', $email) . row('File', $fileName)
-        . row('ATS score', (string)($r['atsScore'] ?? '')) . row('Detected role', $r['detectedRole'] ?? '') . row('Verdict', $r['verdict'] ?? '');
-    return "<h2 style=\"font-family:Georgia,serif;color:#14264A\">New ATS scan lead</h2>"
+function review_lead_html($email, $roles, $salary, $notes, $fileName) {
+    $rows = row('Email', $email) . row('Targeted role(s)', $roles) . row('Desired salary', $salary) . row('File', $fileName);
+    $notesBlock = $notes ? '<p style="margin-top:14px"><b>Notes:</b><br>' . nl2br(esc($notes)) . '</p>' : '';
+    return "<h2 style=\"font-family:Georgia,serif;color:#14264A\">New free CV review request</h2>"
         . "<table style=\"font-family:Arial,sans-serif;font-size:14px\">{$rows}</table>"
-        . report_html($r);
+        . $notesBlock
+        . "<p style=\"font-family:Arial,sans-serif;font-size:13px;color:#6A7286;margin-top:14px\">Resume is attached. Hit reply to respond directly to " . esc($email) . ".</p>";
 }

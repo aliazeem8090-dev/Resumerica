@@ -77,14 +77,10 @@
   .prod .ptop{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
   .prod .ptag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
   .prod .live{width:6px;height:6px;border-radius:50%;background:var(--oxblood)}
-  .prod .ring{position:relative;width:150px;height:150px;margin:16px auto 10px}
-  .prod .ring svg{transform:rotate(-90deg)}
-  .prod .ring .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .prod .ring .val b{font-family:"Fraunces",serif;font-weight:500;font-size:44px;line-height:1;color:var(--navy)}
-  .prod .ring .val span{font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--faint);margin-top:3px}
-  .prod .prow{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);padding:10px 0;border-top:1px solid var(--line)}
-  .prod .prow b{color:var(--navy);font-family:"JetBrains Mono",monospace;font-weight:500}
-  .prod .go{width:100%;margin-top:16px;padding:11px;border-radius:9px;font-size:13.5px}
+  .prod .go{width:100%;margin-top:18px;padding:11px;border-radius:9px;font-size:13.5px}
+  .prod-list{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:16px}
+  .prod-list li{position:relative;padding-left:26px;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+  .prod-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--oxblood);font-weight:800}
 
   /* stat strip */
   .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2)}
@@ -108,115 +104,10 @@
   .hcard h3{font-size:16.5px;margin-bottom:8px;color:var(--navy)}
   .hcard p{color:var(--muted);font-size:13.5px}
 
-  /* SCANNER */
+  /* FREE REVIEW CTA */
   .scanner{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .stepper{display:flex;gap:0;margin-bottom:36px;flex-wrap:wrap;align-items:center}
-  .step{display:flex;align-items:center;gap:9px;padding-right:22px;margin-right:22px;color:var(--faint);font-size:13px;font-weight:500;font-family:"JetBrains Mono",monospace}
-  .step .num{width:22px;height:22px;border-radius:50%;background:var(--surface);border:1px solid var(--line-2);display:grid;place-items:center;font-size:11px;transition:.3s}
-  .step.active{color:var(--navy)}.step.active .num{background:var(--oxblood);color:#FCFAF3;border-color:transparent}
-  .step.done{color:var(--ink-2)}.step.done .num{background:var(--navy);color:#FCFAF3;border-color:transparent}
-
-  .scan-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
-  .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
-  .drop{border:1.5px dashed var(--line-2);border-radius:12px;padding:34px 24px;text-align:center;transition:.16s;cursor:pointer;background:var(--surface-2)}
-  .drop:hover,.drop.drag{border-color:var(--oxblood);background:var(--oxblood-soft)}
-  .drop .ic{width:36px;height:36px;margin:0 auto 12px;color:var(--oxblood)}
-  .drop h4{font-size:16.5px;margin:0 0 5px;color:var(--navy)}
-  .drop p{color:var(--muted);font-size:13px}
-  .drop .file{margin-top:12px;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--oxblood)}
-  .demo-row{margin-top:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--faint)}
-  .chipbtn{font-family:"JetBrains Mono",monospace;font-size:12px;padding:7px 13px;border-radius:8px;background:var(--surface);border:1px solid var(--line-2);color:var(--ink-2);transition:.15s}
-  .chipbtn:hover{border-color:var(--oxblood);color:var(--oxblood)}
-  .email-row{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
-  .email-row input{flex:1;min-width:200px;padding:12px 14px;border-radius:9px;border:1px solid var(--line-2);background:#fff;color:var(--navy);font-size:14.5px;font-family:inherit}
-  .email-row input::placeholder{color:var(--faint)}
+  .review-cta{text-align:center;max-width:560px;margin:0 auto;padding:16px 0 8px}
   .fineprint{font-size:12px;color:var(--faint);margin-top:14px}
-
-  .stage{min-height:356px;position:relative}
-  .stage-panel{display:none}.stage-panel.on{display:block;animation:fade .4s ease}
-  @keyframes fade{from{opacity:0;transform:scale(.99)}to{opacity:1;transform:none}}
-  .stage-idle{border:1px solid var(--line);border-radius:16px;min-height:356px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--faint);padding:30px;background:var(--surface)}
-  .stage-idle .ic{width:34px;height:34px;color:var(--line-2);margin-bottom:14px}
-  .stage-idle .mono{font-size:12.5px}
-
-  .mockdoc{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;min-height:356px;overflow:hidden;box-shadow:var(--shadow-sm)}
-  .md-top{display:flex;justify-content:space-between;align-items:flex-start}
-  .md-name{height:14px;width:44%;background:var(--navy);border-radius:4px}
-  .md-sub{height:7px;width:62%;background:#cdd2dc;margin-top:8px;border-radius:3px}
-  .md-badge{font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--muted);border:1px solid var(--line);padding:3px 6px;border-radius:5px}
-  .md-sec{margin-top:18px}
-  .md-lab{font-family:"JetBrains Mono",monospace;font-size:9.5px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--oxblood)}
-  .md-line{height:6px;background:#e9eaee;border-radius:3px;margin-top:8px}
-  .beam{position:absolute;left:0;right:0;height:60px;top:-66px;background:linear-gradient(180deg,transparent,rgba(20,38,74,.08) 50%,transparent);border-top:1px solid rgba(122,31,43,.45);border-bottom:1px solid rgba(122,31,43,.45)}
-  .beam.run{animation:beamdown 2.3s cubic-bezier(.4,0,.6,1)}
-  @keyframes beamdown{0%{top:-66px}100%{top:100%}}
-  .callout{position:absolute;font-family:"JetBrains Mono",monospace;font-size:11px;padding:5px 10px;border-radius:8px;background:var(--navy);color:#FCFAF3;box-shadow:var(--shadow-sm);opacity:0;transform:translateY(6px) scale(.94);pointer-events:none;white-space:nowrap;z-index:3}
-  .callout.show{opacity:1;transform:none;transition:.3s cubic-bezier(.2,.9,.3,1.3)}
-  .callout .ok{color:#9fd0b4;font-weight:700}
-
-  .gauge-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;text-align:center;min-height:356px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .ring-wrap{position:relative;width:200px;height:200px}
-  .ring-wrap svg{width:100%;height:100%;transform:rotate(-90deg)}
-  .ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .ring-center .score{font-family:"Fraunces",serif;font-weight:400;font-size:62px;line-height:1;color:var(--navy)}
-  .ring-center .out{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--faint);margin-top:3px}
-  .ring-center .verdict{font-weight:600;font-size:13px;margin-top:9px}
-  .gauge-tag{margin-top:18px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted)}
-
-  /* REPORT */
-  .report{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:32px;display:none}
-  .report.show{display:block;animation:fade .5s ease}
-  .rhead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
-  .rhead .rtitle{font-family:"Fraunces",serif;font-size:23px;font-weight:400;color:var(--navy)}
-  .rhead .role{font-family:"JetBrains Mono",monospace;color:var(--muted);font-size:12.5px;margin-top:7px}
-  .report .summary{color:var(--ink-2);font-size:16px;margin-bottom:26px;max-width:780px}
-  .bars{display:grid;gap:15px}
-  .bar-row{display:grid;grid-template-columns:250px 1fr 40px;gap:14px;align-items:center;font-size:13.5px}
-  .bar-row .lab{color:var(--navy);font-weight:600}
-  .bar-row .lab small{display:block;font-weight:400;color:var(--muted);font-size:11.5px;margin-top:3px;line-height:1.35}
-  .bar-track{height:7px;border-radius:6px;background:var(--surface-3);overflow:hidden}
-  .bar-fill{height:100%;border-radius:6px;width:0;transition:width 1s cubic-bezier(.2,.7,.2,1)}
-  .bar-row .pct{font-family:"JetBrains Mono",monospace;text-align:right;color:var(--navy);font-weight:500}
-
-  .breakdown{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
-  .bd-col{border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--surface-2)}
-  .bd-col.good{border-top:2px solid var(--navy)}
-  .bd-col.bad{border-top:2px solid var(--oxblood)}
-  .bd-col h5{display:flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px;font-weight:700}
-  .bd-col.good h5{color:var(--navy)}.bd-col.bad h5{color:var(--oxblood)}
-  .bd-col h5 .cnt{font-family:"JetBrains Mono",monospace;font-size:11px;padding:2px 7px;border-radius:6px;margin-left:auto;font-weight:500}
-  .bd-col.good .cnt{background:rgba(20,38,74,.09);color:var(--navy)}
-  .bd-col.bad .cnt{background:var(--oxblood-soft);color:var(--oxblood)}
-  .bd-list{list-style:none;margin:0;padding:0;display:grid;gap:13px}
-  .bd-list li{font-size:13.5px;color:var(--ink-2);padding-left:24px;position:relative;line-height:1.5}
-  .good .bd-list li::before{content:"✓";position:absolute;left:0;top:-1px;color:var(--navy);font-weight:800}
-  .issue{padding-left:24px;position:relative}
-  .issue::before{content:"✕";position:absolute;left:0;top:0;color:var(--oxblood);font-weight:700;font-size:12px}
-  .issue .p{font-size:13.5px;color:var(--navy);font-weight:600;line-height:1.45}
-  .issue .f{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
-  .issue .f b{color:var(--oxblood);font-weight:700;font-size:11px;letter-spacing:.04em;margin-right:6px;text-transform:uppercase}
-  .kw{margin-top:30px}
-  .kw h5{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin:0 0 14px;font-weight:700}
-  .kw .hint{font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;font-size:12.5px;margin-left:8px}
-  .chips{display:flex;gap:8px;flex-wrap:wrap}
-  .chip{font-family:"JetBrains Mono",monospace;font-size:12px;background:var(--oxblood-soft);color:var(--oxblood);padding:5px 11px;border-radius:7px;border:1px solid #e6cfcc}
-
-  .verdict-block{margin-top:30px;display:none}.verdict-block.show{display:block;animation:fade .5s ease}
-  .cta-panel{border-radius:12px;padding:28px;display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:space-between}
-  .cta-panel.low{background:var(--oxblood-soft);border:1px solid #e6cfcc}
-  .cta-panel h3{font-family:"Fraunces",serif;font-size:22px;font-weight:400;color:var(--navy)}
-  .cta-panel p{color:var(--ink-2);font-size:14px;max-width:520px;margin-top:6px}
-  .upsell-head{margin-top:28px;margin-bottom:18px}
-  .upsell-head h3{font-family:"Fraunces",serif;font-size:22px;font-weight:400;color:var(--navy)}
-  .upsell-head p{color:var(--muted);font-size:14px;margin-top:6px}
-  .upsell-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .up-card{border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px;background:var(--surface-2);transition:.16s}
-  .up-card:hover{border-color:var(--navy)}
-  .up-card .ic{width:24px;height:24px;color:var(--oxblood)}
-  .up-card h4{font-size:15.5px;color:var(--navy)}
-  .up-card p{color:var(--muted);font-size:13px;flex:1}
-  .up-card .price{font-family:"JetBrains Mono",monospace;color:var(--navy);font-size:13px}
-  .up-card button{margin-top:6px;width:100%;padding:10px;border-radius:9px}
 
   /* CASES */
   .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
@@ -306,12 +197,10 @@
 
   @media(max-width:900px){
     .nav-links{display:none}
-    .hero-in,.scan-grid,.breakdown{grid-template-columns:1fr}
+    .hero-in{grid-template-columns:1fr}
     .hero-in{gap:36px;padding:56px 0}
     .how-grid,.case-grid{grid-template-columns:1fr 1fr}
     .tmasonry{columns:2}
-    .upsell-grid{grid-template-columns:1fr}
-    .bar-row{grid-template-columns:150px 1fr 36px}
     .cta-inner{padding:40px 24px}
     .mitem{grid-template-columns:1fr auto}
     .mitem .mbook{display:none}
@@ -331,7 +220,7 @@
     </a>
     <nav class="nav-links">
       <a href="#how">How it works</a>
-      <a href="#scan">Free scan</a>
+      <a href="#review">Free CV review</a>
       <a href="#cases">Field report</a>
       <a href="#pricing">Pricing</a>
       <a href="blog.html">Insights</a>
@@ -348,31 +237,26 @@
     <div class="hero-anim">
       <span class="kick"><span class="flagrule"><i></i><i></i><i></i></span> Your American dream · one resume away</span>
       <h1>Beat the machine that reads your resume in <em>under a second.</em></h1>
-      <p class="lede">Before a recruiter ever sees it, an AI screener scores and ranks your resume. We show you precisely how those systems judge yours — and rewrite it, by hand, to move you up the list.</p>
+      <p class="lede">Before a recruiter ever sees it, an AI screener scores and ranks your resume. Our resume strategists review yours by hand against your target role — and rewrite it to move you up the list.</p>
       <div class="hero-cta">
-        <a href="#scan" class="btn btn-accent">Scan my resume free
+        <a href="#review" class="btn btn-accent">Get a free CV review
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <button class="btn btn-ghost" onclick="openBooking('General consultation')">Book a consultation</button>
       </div>
       <div class="hero-bul">
         <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> No account needed</span>
-        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Results in ~30 seconds</span>
-        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Powered by Claude</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Report within 24 hours</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Reviewed by resume experts</span>
       </div>
     </div>
     <div class="prod">
-      <div class="ptop"><div class="ptag"><span class="live"></span> Live scan preview</div><span class="mono" style="font-size:10px;color:var(--faint)">sample.pdf</span></div>
-      <div class="ring">
-        <svg width="150" height="150" viewBox="0 0 150 150">
-          <circle cx="75" cy="75" r="64" fill="none" stroke="var(--surface-3)" stroke-width="9"/>
-          <circle cx="75" cy="75" r="64" fill="none" stroke="var(--navy)" stroke-width="9" stroke-linecap="round" stroke-dasharray="402" stroke-dashoffset="56"/>
-        </svg>
-        <div class="val"><b>86</b><span>ATS / 100</span></div>
-      </div>
-      <div class="prow"><span>Keyword & role match</span><b>88</b></div>
-      <div class="prow"><span>Impact & metrics</span><b>84</b></div>
-      <div class="prow"><span>Parseability</span><b>92</b></div>
-      <a href="#scan" class="btn btn-navy go">See your score →</a>
+      <div class="ptop"><div class="ptag"><span class="live"></span> Free CV review</div></div>
+      <ul class="prod-list">
+        <li>Reviewed by a resume strategist — not a bot</li>
+        <li>Matched to your targeted role and salary goal</li>
+        <li>Full written report in your inbox within 24 hours</li>
+      </ul>
+      <a href="#review" class="btn btn-navy go">Get my free review →</a>
     </div>
   </div>
 </section>
@@ -393,116 +277,36 @@
     <div class="sec-head reveal">
       <span class="kick">The method</span>
       <h2>Four steps, quietly precise.</h2>
-      <p>A clear path from a PDF to the callback — read by the same kind of AI that screens you, then tailored by hand.</p>
+      <p>A clear path from a PDF to the callback — reviewed by hand against the role you actually want.</p>
     </div>
     <div class="how-grid reveal">
       <div class="hcard"><div class="no">01</div>
         <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h3>Upload your PDF</h3><p>Drop in your resume — or try a live sample. Nothing is stored.</p></div>
+        <h3>Send us your resume</h3><p>Drop your CV in PDF or Word, and tell us the role and salary you're targeting.</p></div>
       <div class="hcard"><div class="no">02</div>
         <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <h3>The machine reads it</h3><p>We analyze it like Workday, Greenhouse & Ashby do in 2026.</p></div>
+        <h3>A strategist reviews it</h3><p>A person — not a bot — reads it against how 2026 hiring platforms actually screen.</p></div>
       <div class="hcard"><div class="no">03</div>
         <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 018-8 8 8 0 018 8M8 21h8M12 13l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <h3>Get your score</h3><p>A 0–100 score, your strengths, the fixes that matter, and keyword gaps.</p></div>
+        <h3>Get your report</h3><p>A written breakdown of what's working, what's not, and exactly what to fix — within 24 hours.</p></div>
       <div class="hcard"><div class="no">04</div>
         <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h3>Fix it & win</h3><p>Under 70? We rebuild it. Over 70? We refine LinkedIn, letters & interviews.</p></div>
+        <h3>Fix it & win</h3><p>Ready to rebuild? We turn the report into a full rewrite that gets you interviews.</p></div>
     </div>
   </div>
 </section>
 
-<!-- SCANNER -->
-<section class="scanner" id="scan">
+<!-- FREE CV REVIEW -->
+<section class="scanner" id="review">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="kick">The free scan</span>
-      <h2>Run your resume through the machine.</h2>
-      <p>Upload a PDF — or tap a sample to walk the whole experience. You'll get a score, what's working for you, and exactly what to change.</p>
+      <span class="kick">Free CV review</span>
+      <h2>Get a professional read on your resume.</h2>
+      <p>Drop your CV, tell us the role and salary you're targeting, and one of our resume strategists will send you a written report within 24 hours.</p>
     </div>
-
-    <div class="stepper" id="stepper">
-      <div class="step active" id="st1"><span class="num">1</span> Upload</div>
-      <div class="step" id="st2"><span class="num">2</span> Analyze</div>
-      <div class="step" id="st3"><span class="num">3</span> Score</div>
-      <div class="step" id="st4"><span class="num">4</span> Next steps</div>
-    </div>
-
-    <div class="scan-grid">
-      <div class="panel">
-        <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload resume PDF">
-          <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h4>Drop your resume here</h4>
-          <p>PDF only · 1–2 pages · never stored</p>
-          <div class="file mono" id="fileName"></div>
-          <input type="file" id="fileInput" accept="application/pdf" hidden>
-        </div>
-        <div class="demo-row">
-          <span>No file handy? Try a sample →</span>
-          <button class="chipbtn" onclick="demoScan('grad')">Recent grad</button>
-          <button class="chipbtn" onclick="demoScan('mid')">Mid-level</button>
-          <button class="chipbtn" onclick="demoScan('senior')">Senior</button>
-        </div>
-        <div class="email-row">
-          <input type="email" id="emailInput" placeholder="you@email.com — for your full report">
-          <button class="btn btn-accent" id="scanBtn" onclick="startScan()">Scan &amp; email report</button>
-        </div>
-        <p class="fineprint">Your resume is analyzed securely and never stored on our servers.</p>
-      </div>
-
-      <div class="stage">
-        <div class="stage-panel on" id="stageIdle">
-          <div class="stage-idle">
-            <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <div class="mono">Awaiting your resume…</div>
-            <div class="mono" style="margin-top:6px;color:var(--line-2)">upload a PDF or tap a sample</div>
-          </div>
-        </div>
-        <div class="stage-panel" id="stageScan">
-          <div class="mockdoc" id="mockdoc">
-            <div class="beam" id="beam"></div>
-            <div class="md-top"><div><div class="md-name"></div><div class="md-sub"></div></div><div class="md-badge">RESUME.PDF</div></div>
-            <div class="md-sec"><div class="md-lab">Experience</div><div class="md-line" style="width:100%"></div><div class="md-line" style="width:92%"></div><div class="md-line" style="width:78%"></div></div>
-            <div class="md-sec"><div class="md-lab">Skills</div><div class="md-line" style="width:88%"></div><div class="md-line" style="width:64%"></div></div>
-            <div class="md-sec"><div class="md-lab">Education</div><div class="md-line" style="width:70%"></div></div>
-            <div class="callout" id="co1" style="top:14%;right:14px">Name detected <span class="ok">✓</span></div>
-            <div class="callout" id="co2" style="top:40%;left:16px">5 skills parsed <span class="ok">✓</span></div>
-            <div class="callout" id="co3" style="top:62%;right:14px">Dates: clean <span class="ok">✓</span></div>
-            <div class="callout" id="co4" style="top:82%;left:16px">Scoring impact…</div>
-          </div>
-        </div>
-        <div class="stage-panel" id="stageGauge">
-          <div class="gauge-card">
-            <div class="ring-wrap">
-              <svg viewBox="0 0 200 200">
-                <circle cx="100" cy="100" r="86" fill="none" stroke="var(--surface-3)" stroke-width="9"/>
-                <circle id="gaugeArc" cx="100" cy="100" r="86" fill="none" stroke="var(--navy)" stroke-width="9" stroke-linecap="round" stroke-dasharray="540" stroke-dashoffset="540"/>
-              </svg>
-              <div class="ring-center">
-                <div class="score" id="scoreNum">0</div>
-                <div class="out">/ 100 ATS</div>
-                <div class="verdict" id="verdictWord"></div>
-              </div>
-            </div>
-            <div class="gauge-tag" id="gaugeTag"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="report" id="report">
-      <div class="rhead">
-        <div><div class="rtitle">Your ATS report</div><div class="role mono" id="detectedRole"></div></div>
-        <div class="mono" id="emailedTo" style="font-size:12px;color:var(--faint)"></div>
-      </div>
-      <p class="summary" id="reportSummary"></p>
-      <div class="bars" id="bars"></div>
-      <div class="breakdown">
-        <div class="bd-col good"><h5>Favoring your score <span class="cnt" id="strengthCount"></span></h5><ul class="bd-list" id="strengths"></ul></div>
-        <div class="bd-col bad"><h5>Hurting your score — change these <span class="cnt" id="issueCount"></span></h5><div class="bd-list" id="issues"></div></div>
-      </div>
-      <div class="kw"><h5>Keywords to add <span class="hint">terms the target role expects that your resume is missing</span></h5><div class="chips" id="keywordGaps"></div></div>
-      <div class="verdict-block" id="verdictBlock"></div>
+    <div class="review-cta reveal">
+      <button class="btn btn-accent" style="font-size:15px;padding:16px 32px" onclick="openReview()">Get a free CV review</button>
+      <p class="fineprint">PDF or Word · reviewed by a person, not a bot · takes about 2 minutes</p>
     </div>
   </div>
 </section>
@@ -579,7 +383,7 @@
     <div class="sec-head reveal">
       <span class="kick">Services &amp; pricing</span>
       <h2>Commission one. Or build the whole story.</h2>
-      <p>Every engagement starts with your free scan. From there, choose exactly what you need — à la carte, no packages you don't want.</p>
+      <p>Every engagement can start with your free CV review. From there, choose exactly what you need — à la carte, no packages you don't want.</p>
     </div>
     <div class="menu reveal">
       <div class="mitem" onclick="openBooking('Resume — $99')">
@@ -619,9 +423,9 @@
       <h2>Answered plainly.</h2>
     </div>
     <div class="faq reveal">
-      <details open><summary>How does the free scan actually work?</summary><div class="anc">You upload a PDF and it's analyzed the way a modern applicant-tracking system would read it — a blend of classic keyword parsing and the LLM screening now shipping in platforms like Workday, Greenhouse and Ashby. You get a 0–100 score, a category breakdown, your strengths, the specific fixes to make, and the keywords you're missing.</div></details>
-      <details><summary>Is my resume stored or shared?</summary><div class="anc">No. Your file is analyzed in-session to produce your report and isn't retained. In production, report delivery connects to your own email provider — nothing is sold or shared.</div></details>
-      <details><summary>What score do I actually need?</summary><div class="anc">As a rule of thumb, 70+ tends to clear the first automated gate, and 85+ reads as a strong candidate. Below 70, most screeners filter you out before a recruiter looks — which is where a rewrite pays for itself.</div></details>
+      <details open><summary>How does the free CV review actually work?</summary><div class="anc">Upload your resume (PDF or Word) along with the role you're targeting, your desired salary, and any notes. One of our resume strategists reviews it by hand against your target role and sends you a written report — strengths, issues, and exactly what to fix — within 24 hours.</div></details>
+      <details><summary>Is my resume stored or shared?</summary><div class="anc">Your file is used only to prepare your review and isn't sold or shared. It's emailed directly to our team to review.</div></details>
+      <details><summary>What do I get back?</summary><div class="anc">A clear, written read on what's already working in your favor, what's likely hurting your chances with both recruiters and AI screeners, and the specific changes to make — written in plain language by a person, not an automated score.</div></details>
       <details><summary>What's included in a resume rewrite?</summary><div class="anc">A full rebuild engineered to parse cleanly, mirror the language of your target roles, and lead with quantified outcomes — written by hand, not auto-generated. Turnaround is typically a couple of days, with revisions to align on direction.</div></details>
       <details><summary>Do you work with senior and executive resumes?</summary><div class="anc">Yes — much of our work is with experienced professionals leveling up. Senior resumes often score lower than expected because scope and impact get buried; the fixes are usually small but decisive.</div></details>
     </div>
@@ -635,7 +439,7 @@
       <div class="flagwash"></div>
       <span class="kick" style="justify-content:center;margin-bottom:18px">Talk to a strategist</span>
       <h2>Your American dream. One resume away.</h2>
-      <p>Book a free 20-minute consultation. We'll review your scan, pinpoint what's costing you interviews, and map the fastest path to yes.</p>
+      <p>Book a free 20-minute consultation. We'll review your resume, pinpoint what's costing you interviews, and map the fastest path to yes.</p>
       <button class="btn btn-accent" style="font-size:15px;padding:15px 30px" onclick="openBooking('Free 20-minute strategy call')">Book my consultation</button>
     </div>
   </div>
@@ -661,14 +465,14 @@
       </div>
       <div class="foot-cols">
         <div class="col"><b>Services</b><a href="#pricing">Resume</a><a href="#pricing">LinkedIn revamp</a><a href="#pricing">Cover letter</a><a href="#pricing">Interview toolkit</a></div>
-        <div class="col"><b>Company</b><a href="#how">How it works</a><a href="#scan">Free scan</a><a href="#cases">Field report</a><a href="blog.html">Insights</a><a href="#faq">FAQ</a></div>
+        <div class="col"><b>Company</b><a href="#how">How it works</a><a href="#review">Free CV review</a><a href="#cases">Field report</a><a href="blog.html">Insights</a><a href="#faq">FAQ</a></div>
       </div>
     </div>
-    <small>© 2026 Resumerica. Scan powered by Claude. Statistics cited from BLS JOLTS, LinkedIn, BambooHR, and 2026 industry hiring reports. This page is an interactive prototype — email delivery and booking connect to your live services in production.</small>
+    <small>© 2026 Resumerica. Statistics cited from BLS JOLTS, LinkedIn, BambooHR, and 2026 industry hiring reports.</small>
   </div>
 </footer>
 
-<!-- MODAL -->
+<!-- BOOKING MODAL -->
 <div class="modal" id="modal" aria-modal="true" role="dialog">
   <div class="modal-bg" onclick="closeBooking()"></div>
   <div class="modal-card">
@@ -699,11 +503,35 @@
   </div>
 </div>
 
+<!-- FREE CV REVIEW MODAL -->
+<div class="modal" id="reviewModal" aria-modal="true" role="dialog">
+  <div class="modal-bg" onclick="closeReview()"></div>
+  <div class="modal-card">
+    <button class="close" onclick="closeReview()" aria-label="Close">×</button>
+    <div id="reviewForm">
+      <span class="pill">Free CV review</span>
+      <h3>Send us your resume.</h3>
+      <div class="field"><label>Your resume (PDF or Word)</label><input type="file" id="rvFile" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></div>
+      <div class="field"><label>Email</label><input id="rvEmail" type="email" placeholder="you@email.com"></div>
+      <div class="field"><label>Targeted role(s)</label><input id="rvRoles" placeholder="e.g. Senior Product Manager"></div>
+      <div class="field"><label>Desired salary for your next role</label><input id="rvSalary" placeholder="e.g. $120k–$140k"></div>
+      <input id="rvWebsite" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <div class="field"><label>Anything else we should know?</label><textarea id="rvNotes" placeholder="Drop any notes here"></textarea></div>
+      <button class="btn btn-accent" style="width:100%;margin-top:18px" id="rvSubmit" onclick="submitReview()">Send my resume for review</button>
+    </div>
+    <div id="reviewOk" class="modal-ok" style="display:none">
+      <svg class="badge" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Thank you for submitting your request.</h3>
+      <p style="color:var(--muted);margin-top:10px">Your CV is being reviewed by our professionals and we will get back to you with a report within 24 hours.</p>
+      <button class="btn btn-navy" style="margin-top:20px" onclick="closeReview()">Done</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-let pdfBase64=null,pdfFileName=null;
 
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('.count').forEach(runCount);io.unobserve(e.target);}});},{threshold:.14});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
@@ -715,203 +543,12 @@ function runCount(el){
   const t=setInterval(()=>{cur+=inc;if(cur>=to){cur=to;clearInterval(t);}el.textContent=pre+cur.toFixed(dec)+suf;},22);
 }
 
-const drop=document.getElementById('drop'),fileInput=document.getElementById('fileInput');
-drop.addEventListener('click',()=>fileInput.click());
-drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fileInput.click();}});
-drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('drag');});
-drop.addEventListener('dragleave',()=>drop.classList.remove('drag'));
-drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('drag');if(e.dataTransfer.files[0])handleFile(e.dataTransfer.files[0]);});
-fileInput.addEventListener('change',e=>{if(e.target.files[0])handleFile(e.target.files[0]);});
-function handleFile(file){
-  if(file.type!=='application/pdf'){toast('Please upload a PDF file.');return;}
-  if(file.size>5*1024*1024){toast('That PDF is over 5 MB — please export a smaller version.');return;}
-  pdfFileName=file.name;document.getElementById('fileName').textContent='✓ '+file.name;
-  const r=new FileReader();r.onload=()=>{pdfBase64=r.result.split(',')[1];};r.readAsDataURL(file);
-}
-
-function setStep(n){[1,2,3,4].forEach(i=>{const el=document.getElementById('st'+i);el.classList.remove('active','done');if(i<n)el.classList.add('done');else if(i===n)el.classList.add('active');});}
-function showPanel(id){['stageIdle','stageScan','stageGauge'].forEach(p=>document.getElementById(p).classList.toggle('on',p===id));}
-
-function playBeam(){
-  return new Promise(res=>{
-    const beam=document.getElementById('beam');
-    const cos=['co1','co2','co3','co4'].map(id=>document.getElementById(id));
-    cos.forEach(c=>c.classList.remove('show'));
-    if(reduce){cos.forEach(c=>c.classList.add('show'));return res();}
-    beam.classList.remove('run');void beam.offsetWidth;beam.classList.add('run');
-    [500,1050,1550,2050].forEach((t,i)=>setTimeout(()=>cos[i].classList.add('show'),t));
-    setTimeout(res,2450);
-  });
-}
-
-async function runScan(resultPromise,email){
-  const btn=document.getElementById('scanBtn');btn.disabled=true;const orig=btn.textContent;btn.textContent='Scanning…';
-  document.getElementById('report').classList.remove('show');
-  document.getElementById('verdictBlock').classList.remove('show');
-  setStep(2);showPanel('stageScan');
-  try{
-    const [data]=await Promise.all([resultPromise,playBeam()]);
-    setStep(3);showPanel('stageGauge');
-    renderResult(data,email);
-  }catch(err){
-    console.error(err);showPanel('stageIdle');setStep(1);
-    document.querySelector('#stageIdle .mono').textContent='Scan failed — try again';
-    toast("We couldn't read that resume. Try re-uploading the PDF.");
-  }finally{btn.disabled=false;btn.textContent=orig;}
-}
-
-function startScan(){
-  if(!pdfBase64){toast('Upload a PDF or tap a sample to see the full experience.');return;}
-  if(pdfBase64==='(demo)'){toast('That was a sample — upload a real PDF to scan your own.');return;}
-  const email=document.getElementById('emailInput').value.trim();
-  runScan(callClaude(pdfBase64,email),email);
-}
-
-async function callClaude(base64,email){
-  const res=await fetch("/api/scan.php",{method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({pdf:base64,email:email||"",fileName:pdfFileName||""})});
-  const data=await res.json().catch(()=>({}));
-  if(!res.ok)throw new Error(data.error||("API "+res.status));
-  return data;
-}
-
-const DEMO={
-  grad:{atsScore:58,detectedRole:"Entry-level Marketing Coordinator",verdict:"Getting filtered out",
-    summary:"Solid raw material, but the machine struggles here — light on role keywords and almost no quantified results. Most 2026 screeners would rank this below the interview cut.",
-    categories:[
-      {name:"Parseability & formatting",score:72,note:"Single column parses, but a header table risks it"},
-      {name:"Section structure",score:63,note:"Standard sections, no dedicated Skills block"},
-      {name:"Keyword & role match",score:44,note:"Missing most core marketing terms"},
-      {name:"Impact & metrics",score:41,note:"Bullets describe duties, not measurable results"},
-      {name:"Contact & links",score:80,note:"Email + phone present, no LinkedIn/portfolio"}],
-    strengths:["Clean single-column layout that parsers read without errors","Standard, recognizable section headings (Experience, Education)","Reverse-chronological work history with clear, consistent dates","Complete contact block with a professional email address"],
-    issues:[
-      {problem:"Almost no quantified results — bullets list tasks, not outcomes",fix:"Add 3–4 numbers per role (%, $, volume, growth)"},
-      {problem:"Missing core role keywords like SEO, Google Analytics and CRM",fix:"Mirror the exact terms from 2–3 target job posts"},
-      {problem:"No dedicated Skills section for tools and platforms",fix:"Add a Skills block listing software, channels and methods"},
-      {problem:"Generic summary that never states a target title",fix:"Open with the exact role title you're applying for"},
-      {problem:"No LinkedIn or portfolio link in the header",fix:"Add a LinkedIn/portfolio URL beside your contact info"}],
-    keywordGaps:["SEO","Google Analytics","A/B testing","CRM","campaign ROI"]},
-  mid:{atsScore:73,detectedRole:"Software Engineer (Mid-level)",verdict:"Interview-ready, with gaps",
-    summary:"Clears most screeners and reads well to an LLM, but a few high-value keywords and metrics are missing that separate 'seen' from 'shortlisted'.",
-    categories:[
-      {name:"Parseability & formatting",score:84,note:"No tables or columns to confuse parsers"},
-      {name:"Section structure",score:78,note:"Clear sections; no top-of-page tech stack"},
-      {name:"Keyword & role match",score:69,note:"Good core coverage, missing senior signals"},
-      {name:"Impact & metrics",score:66,note:"Recent roles quantified, older ones vague"},
-      {name:"Contact & links",score:82,note:"GitHub present, portfolio link missing"}],
-    strengths:["Strong parseable formatting with no tables or multi-column tricks","Solid keyword coverage for core engineering skills","Consistent recent-first experience with clear dates","Most bullets already lead with strong action verbs","GitHub linked in the header for easy verification"],
-    issues:[
-      {problem:"Impact is under-quantified in earlier roles",fix:"Add latency, scale or user metrics to each project"},
-      {problem:"Missing high-signal terms: CI/CD, system design, cloud",fix:"Weave AWS/GCP, CI/CD and design into real bullets"},
-      {problem:"No tech-stack summary near the top for fast matching",fix:"Add a one-line stack summary under your name"},
-      {problem:"Summary lists responsibilities rather than wins",fix:"Lead with 2–3 measurable achievements instead"}],
-    keywordGaps:["CI/CD","system design","AWS/GCP","observability"]},
-  senior:{atsScore:89,detectedRole:"Senior Product Manager",verdict:"Strong — through the gate",
-    summary:"This reads like a top candidate to both keyword parsers and LLM screeners — clean structure, dense role match, and outcomes tied to numbers. The resume is doing its job.",
-    categories:[
-      {name:"Parseability & formatting",score:93,note:"Clean structure LLM screeners read easily"},
-      {name:"Section structure",score:88,note:"Logical order; a couple of dense blocks"},
-      {name:"Keyword & role match",score:86,note:"Dense, precise match for senior PM roles"},
-      {name:"Impact & metrics",score:85,note:"Nearly every bullet tied to a number"},
-      {name:"Contact & links",score:92,note:"LinkedIn and portfolio both present"}],
-    strengths:["Excellent parseability — clean structure LLM screeners read easily","Dense, precise role-keyword match for senior PM postings","Almost every bullet ties to a measurable business outcome","Complete contact block with LinkedIn and portfolio links","Clear seniority and scope signals in each role"],
-    issues:[
-      {problem:"Slightly long — older roles dilute the strong top",fix:"Trim to the 6–8 strongest, most recent wins"},
-      {problem:"Exact target title isn't mirrored in the header",fix:"Match the posting's title (e.g. 'Senior PM') up top"},
-      {problem:"Two roles use dense text blocks that reduce scannability",fix:"Break long bullets into one-line, outcome-first statements"}],
-    keywordGaps:[]}
-};
-function demoScan(kind){
-  pdfBase64='(demo)';
-  document.getElementById('fileName').textContent='✓ sample-'+kind+'-resume.pdf';
-  const email=document.getElementById('emailInput').value.trim();
-  const preset=JSON.parse(JSON.stringify(DEMO[kind]));preset._demo=true;
-  runScan(new Promise(r=>setTimeout(()=>r(preset),reduce?0:200)),email);
-}
-
-function bandColor(s){return s<70?'var(--oxblood)':s<85?'var(--gold)':'var(--navy)';}
-function bandWord(s){return s<70?'Needs work':s<85?'Interview-ready':'Strong';}
-function renderResult(d,email){
-  const score=Math.max(0,Math.min(100,Math.round(d.atsScore)));
-  const col=bandColor(score);
-  const arc=document.getElementById('gaugeArc'),num=document.getElementById('scoreNum'),vw=document.getElementById('verdictWord');
-  arc.style.stroke=col;vw.style.color=col;
-  const off=540-(score/100)*540;
-  if(reduce){num.textContent=score;arc.style.strokeDashoffset=off;}
-  else{arc.style.transition='stroke-dashoffset 1.3s cubic-bezier(.2,.7,.2,1)';requestAnimationFrame(()=>arc.style.strokeDashoffset=off);
-    let cur=0;const step=Math.max(1,Math.round(score/45));const t=setInterval(()=>{cur+=step;if(cur>=score){cur=score;clearInterval(t);}num.textContent=cur;},22);}
-  vw.textContent=d.verdict||bandWord(score);
-  document.getElementById('gaugeTag').textContent=score<70?'Below the 70 interview line':'Above the 70 interview line';
-
-  document.getElementById('detectedRole').textContent='Read as: '+(d.detectedRole||'General role');
-  document.getElementById('reportSummary').textContent=d.summary||'';
-  document.getElementById('emailedTo').textContent=d._demo?'Sample report — upload your PDF to get your own':d._emailed?('Full report sent to '+email):email?('We\'ll follow up at '+email):'Add an email to receive the full report';
-
-  const bars=document.getElementById('bars');bars.innerHTML='';
-  (d.categories||[]).forEach(c=>{const cs=Math.max(0,Math.min(100,Math.round(c.score)));
-    const note=c.note?`<small>${esc(c.note)}</small>`:'';
-    const row=document.createElement('div');row.className='bar-row';
-    row.innerHTML=`<div class="lab">${esc(c.name)}${note}</div><div class="bar-track"><div class="bar-fill" style="background:${bandColor(cs)}"></div></div><div class="pct">${cs}</div>`;
-    bars.appendChild(row);requestAnimationFrame(()=>setTimeout(()=>row.querySelector('.bar-fill').style.width=cs+'%',80));});
-
-  const str=document.getElementById('strengths');str.innerHTML='';
-  (d.strengths||[]).forEach(s=>{const li=document.createElement('li');li.textContent=s;str.appendChild(li);});
-  if(!(d.strengths||[]).length)str.innerHTML='<li>No standout strengths detected yet — the fixes on the right will build them.</li>';
-  document.getElementById('strengthCount').textContent=(d.strengths||[]).length||'';
-
-  const iss=document.getElementById('issues');iss.innerHTML='';
-  (d.issues||[]).forEach(it=>{const div=document.createElement('div');div.className='issue';
-    div.innerHTML=`<div class="p">${esc(it.problem||'')}</div><div class="f"><b>Fix</b>${esc(it.fix||'')}</div>`;
-    iss.appendChild(div);});
-  if(!(d.issues||[]).length)iss.innerHTML='<div class="issue" style="padding-left:0">Nothing major is holding this resume back — polish only.</div>';
-  document.getElementById('issueCount').textContent=(d.issues||[]).length||'';
-
-  const gaps=document.getElementById('keywordGaps');gaps.innerHTML='';
-  (d.keywordGaps||[]).forEach(k=>{const c=document.createElement('span');c.className='chip';c.textContent=k;gaps.appendChild(c);});
-  if(!(d.keywordGaps||[]).length)gaps.innerHTML='<span class="chip" style="background:rgba(20,38,74,.08);color:var(--navy);border-color:rgba(20,38,74,.18)">No major keyword gaps found ✓</span>';
-
-  document.getElementById('report').classList.add('show');
-  renderVerdictBlock(score);
-  setStep(4);
-  if(email)toast('Detailed report on its way to '+email);
-}
-
-function renderVerdictBlock(score){
-  const vb=document.getElementById('verdictBlock');
-  if(score<70){
-    vb.innerHTML=`<div class="cta-panel low">
-      <div><span class="pill" style="border-color:#e6cfcc;color:var(--oxblood)">Score below 70</span>
-      <h3 style="margin-top:12px">Your resume is getting filtered out.</h3>
-      <p>At this score, most AI screeners drop you before a recruiter looks. Commission a full rewrite and we'll rebuild it to clear the machine.</p></div>
-      <button class="btn btn-accent" style="white-space:nowrap" onclick="openBooking('Resume rewrite — $99 (scan: ${score}/100)')">Rewrite my resume · $99</button></div>`;
-  }else{
-    vb.innerHTML=`<div class="upsell-head">
-      <span class="pill" style="border-color:rgba(20,38,74,.2);color:var(--navy)">Score ${score}/100 · through the gate</span>
-      <h3 style="margin-top:12px">Now turn interviews into offers.</h3>
-      <p>Your resume clears the machine. These refine everything after it.</p></div>
-      <div class="upsell-grid">
-      <div class="up-card"><svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 01-7.7 5.7L5 17H3v-2l3.3-3.3A6 6 0 1116 8z" stroke="currentColor" stroke-width="1.6"/></svg>
-        <h4>LinkedIn revamp</h4><p>Get found by recruiters with a profile that mirrors your strong resume.</p>
-        <div class="price">$75</div><button class="btn btn-ghost" onclick="openBooking('LinkedIn Profile Revamp — $75 (scan: ${score}/100)')">Add this</button></div>
-      <div class="up-card"><svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H7l-3 3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-        <h4>Cover letter</h4><p>A role-specific letter that gives a strong resume its human hook.</p>
-        <div class="price">$40</div><button class="btn btn-ghost" onclick="openBooking('Cover Letter — $40 (scan: ${score}/100)')">Add this</button></div>
-      <div class="up-card"><svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 3a4 4 0 014 4v3a4 4 0 01-8 0V7a4 4 0 014-4zM5 11a7 7 0 0014 0M12 18v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        <h4>Interview toolkit</h4><p>Frameworks and mock questions for AI-scored screens and live rounds.</p>
-        <div class="price">$30</div><button class="btn btn-ghost" onclick="openBooking('Interview Toolkit — $30 (scan: ${score}/100)')">Add this</button></div>
-      </div>`;
-  }
-  vb.classList.add('show');
-}
-
 let bookingCtx='';
 function openBooking(ctx){
   bookingCtx=ctx||'';
   document.getElementById('modalCtx').textContent=ctx?('Focus: '+ctx):'';
   document.getElementById('modalForm').style.display='block';
   document.getElementById('modalOk').style.display='none';
-  const pre=document.getElementById('emailInput').value.trim();if(pre)document.getElementById('bkEmail').value=pre;
   document.getElementById('modal').classList.add('show');document.body.style.overflow='hidden';
 }
 function closeBooking(){document.getElementById('modal').classList.remove('show');document.body.style.overflow='';}
@@ -934,7 +571,48 @@ async function submitBooking(){
     console.error(err);toast("Couldn't send your request — please try again.");
   }finally{btn.disabled=false;btn.textContent=orig;}
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBooking();});
+
+function openReview(){
+  document.getElementById('reviewForm').style.display='block';
+  document.getElementById('reviewOk').style.display='none';
+  document.getElementById('reviewModal').classList.add('show');document.body.style.overflow='hidden';
+}
+function closeReview(){document.getElementById('reviewModal').classList.remove('show');document.body.style.overflow='';}
+async function submitReview(){
+  const fileEl=document.getElementById('rvFile');
+  const email=document.getElementById('rvEmail').value.trim();
+  const roles=document.getElementById('rvRoles').value.trim();
+  const salary=document.getElementById('rvSalary').value.trim();
+  const notes=document.getElementById('rvNotes').value.trim();
+  const website=document.getElementById('rvWebsite').value.trim();
+
+  if(!fileEl.files[0]){toast('Please attach your resume (PDF or Word).');return;}
+  const file=fileEl.files[0];
+  if(!/\.(pdf|doc|docx)$/i.test(file.name)){toast('Please upload a PDF or Word document.');return;}
+  if(file.size>8*1024*1024){toast('That file is over 8 MB — please upload a smaller version.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){toast('Please enter a valid email.');return;}
+  if(!roles){toast("Please tell us the role(s) you're targeting.");return;}
+
+  const btn=document.getElementById('rvSubmit');btn.disabled=true;const orig=btn.textContent;btn.textContent='Sending…';
+  try{
+    const fd=new FormData();
+    fd.append('resume',file);
+    fd.append('email',email);
+    fd.append('roles',roles);
+    fd.append('salary',salary);
+    fd.append('notes',notes);
+    fd.append('website',website);
+    const res=await fetch('/api/review.php',{method:'POST',body:fd});
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok)throw new Error(data.error||'Request failed');
+    document.getElementById('reviewForm').style.display='none';
+    document.getElementById('reviewOk').style.display='block';
+  }catch(err){
+    console.error(err);toast(err.message||"Couldn't send your resume — please try again.");
+  }finally{btn.disabled=false;btn.textContent=orig;}
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeBooking();closeReview();}});
 
 function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 let toastTimer;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3600);}
