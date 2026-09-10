@@ -768,7 +768,7 @@ function startScan(){
 }
 
 async function callClaude(base64,email){
-  const res=await fetch("/api/scan",{method:"POST",headers:{"Content-Type":"application/json"},
+  const res=await fetch("/api/scan.php",{method:"POST",headers:{"Content-Type":"application/json"},
     body:JSON.stringify({pdf:base64,email:email||"",fileName:pdfFileName||""})});
   const data=await res.json().catch(()=>({}));
   if(!res.ok)throw new Error(data.error||("API "+res.status));
@@ -922,7 +922,7 @@ async function submitBooking(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){toast('Please enter a valid email.');return;}
   const btn=document.getElementById('bkSubmit');btn.disabled=true;const orig=btn.textContent;btn.textContent='Sending…';
   try{
-    const res=await fetch('/api/book',{method:'POST',headers:{'Content-Type':'application/json'},
+    const res=await fetch('/api/book.php',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({name,email,phone,date,time,goal,service:bookingCtx,website:v('bkWebsite')})});
     const data=await res.json().catch(()=>({}));
     if(!res.ok)throw new Error(data.error||'Request failed');
