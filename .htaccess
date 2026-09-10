@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^cloudflare-worker/ - [F,L]
+  RewriteRule ^\.git - [F,L]
+</IfModule>
+
+<Files "README.md">
+  Require all denied
+</Files>
