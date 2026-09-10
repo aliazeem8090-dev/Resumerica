@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Insights — Resumerica</title>
+<meta name="description" content="Notes on AI resume screening, ATS systems, and the 2026 hiring market — from the Resumerica team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F0E4; --bg-2:#EFE9DA; --surface:#FCFAF3; --surface-2:#F1EBDC; --surface-3:#E7E0CE;
+    --ink:#14264A; --ink-2:#3A4869; --muted:#6A7286; --faint:#A69F8E;
+    --line:#E4DCC7; --line-2:#D5CBB1;
+    --navy:#14264A; --navy-2:#1F3763; --oxblood:#7A1F2B; --oxblood-2:#98283A; --oxblood-soft:#EFE0DD;
+    --gold:#B0842C;
+    --shadow:0 26px 60px -34px rgba(20,38,74,.4); --shadow-sm:0 8px 22px -14px rgba(20,38,74,.28);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.65;font-size:16px}
+  h1,h2{margin:0;font-family:"Fraunces",Georgia,serif;font-weight:400;letter-spacing:-.02em;line-height:1.1}
+  h3{margin:0;font-weight:600;letter-spacing:-.01em;line-height:1.25}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  .mono{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px}
+  .kick{display:inline-flex;align-items:center;gap:12px;font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--oxblood)}
+  .flagrule{display:inline-flex;flex-direction:column;gap:2px;width:26px}
+  .flagrule i{height:2px;border-radius:2px}
+  .flagrule i:nth-child(1){background:var(--oxblood)}
+  .flagrule i:nth-child(2){background:var(--navy)}
+  .flagrule i:nth-child(3){background:var(--oxblood);opacity:.45}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:9px;font-weight:600;font-size:14.5px;transition:transform .16s ease,background .16s,border-color .16s;border:none;cursor:pointer;font-family:inherit}
+  .btn-accent{background:var(--oxblood);color:#FCFAF3}
+  .btn-accent:hover{background:var(--oxblood-2);transform:translateY(-1px)}
+  :focus-visible{outline:2px solid var(--oxblood);outline-offset:2px;border-radius:5px}
+
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(245,240,228,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1120px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:11px;color:var(--navy)}
+  .brand svg{height:30px;width:auto;flex:none}
+  .brand b{font-family:"Fraunces",serif;font-weight:600;font-size:22px;letter-spacing:.01em;color:var(--navy)}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{color:var(--muted);font-weight:500;font-size:14px;transition:color .15s}
+  .nav-links a:hover,.nav-links a.on{color:var(--navy)}
+  .nav .btn{padding:9px 17px;font-size:13.5px}
+
+  .bhero{padding:64px 0 48px;border-bottom:1px solid var(--line)}
+  .bhero h1{font-size:clamp(34px,5vw,52px);color:var(--navy);margin-top:18px}
+  .bhero p{color:var(--muted);font-size:17px;max-width:600px;margin-top:16px}
+
+  .posts{padding:56px 0 90px;display:grid;gap:0}
+  article.post{padding:48px 0;border-bottom:1px solid var(--line)}
+  article.post:first-child{padding-top:0}
+  .post .meta{display:flex;gap:14px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--faint);margin-bottom:14px}
+  .post .meta .tag{color:var(--oxblood);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
+  .post h2{font-size:clamp(24px,3vw,32px);color:var(--navy)}
+  .post .dek{color:var(--ink-2);font-size:16.5px;margin-top:14px;max-width:720px}
+  .post .body{color:var(--ink-2);font-size:15.5px;margin-top:20px;max-width:720px;display:grid;gap:14px}
+  .post .body b{color:var(--navy)}
+  .post .body ul{margin:0;padding-left:22px;display:grid;gap:8px}
+  .post .cta{margin-top:24px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .post .cta a.inline{color:var(--oxblood);font-weight:600;font-size:14px}
+  .post .src{margin-top:18px;font-size:11.5px;color:var(--faint);font-family:"JetBrains Mono",monospace}
+
+  .band{background:var(--navy);border-radius:20px;padding:52px;text-align:center;margin:0 0 90px}
+  .band .kick{color:#D9A9AE}
+  .band h2{color:#FCFAF3;font-size:clamp(24px,3.4vw,36px);margin-top:16px}
+  .band p{color:#C4CBDA;margin:14px auto 26px;max-width:480px;font-size:15.5px}
+
+  footer{background:var(--bg-2);color:var(--muted);padding:32px 0 40px;border-top:1px solid var(--line-2)}
+  footer .wrap{max-width:1120px}
+  footer a{color:var(--muted)}footer a:hover{color:var(--navy)}
+  footer small{display:block;color:var(--faint);font-size:12px}
+
+  @media(max-width:700px){.nav-links{display:none}.band{padding:36px 24px}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html" aria-label="Resumerica home">
+      <svg viewBox="0 0 44 40" aria-hidden="true"><rect x="0" y="18" width="11" height="22" rx="1.5" fill="#14264A"/><rect x="16.5" y="9" width="11" height="31" rx="1.5" fill="#14264A"/><rect x="33" y="0" width="11" height="40" rx="1.5" fill="#7A1F2B"/></svg>
+      <b>Resumerica</b>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#scan">Free scan</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="blog.html" class="on">Insights</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-accent" href="index.html#scan">Scan my resume</a>
+  </div>
+</header>
+
+<section class="bhero">
+  <div class="wrap">
+    <span class="kick"><span class="flagrule"><i></i><i></i><i></i></span> Insights</span>
+    <h1>What the AI hiring machine is actually doing.</h1>
+    <p>Short, specific notes on ATS systems, LLM screening and the 2026 job market — so you know exactly what you're up against before you hit apply.</p>
+  </div>
+</section>
+
+<section class="posts">
+  <div class="wrap">
+
+    <article class="post">
+      <div class="meta"><span class="tag">ATS</span><span>·</span><span>7 min read</span></div>
+      <h2>Why your resume gets rejected in under a second</h2>
+      <p class="dek">Modern hiring platforms don't wait for a human to glance at your file. Here's the actual sequence a resume goes through before anyone decides you're worth an interview.</p>
+      <div class="body">
+        <p>Most job seekers picture an "ATS" as a simple keyword filter — a robot skimming for buzzwords. That's outdated. In 2026, a resume typically passes through three or four automated layers before a person ever opens it: a parser that extracts your text and structure, a keyword/skills matcher scored against the job requisition, and increasingly an LLM-based screener that reads the whole document and writes a plain-language summary and fit score for the recruiter.</p>
+        <p><b>The parser matters most, and it's the easiest to get wrong.</b> Multi-column layouts, text boxes, tables and graphics can scramble the order your experience is read in, or drop it entirely. A resume that looks polished in a PDF viewer can still land on a recruiter's desk as garbled text.</p>
+        <p>Three things consistently separate resumes that clear this gate from ones that don't:</p>
+        <ul>
+          <li>Single-column, standard section headings (Experience, Education, Skills) that any parser recognizes</li>
+          <li>Language that mirrors the target job posting, not just your internal job title</li>
+          <li>Complete, plain-text contact information — no contact details locked inside a header/footer or image</li>
+        </ul>
+        <div class="cta"><a class="btn btn-accent" href="index.html#scan">Run the free scan →</a><a class="inline" href="index.html#how">See how scoring works</a></div>
+      </div>
+      <div class="src">Sources: 2026 AI-screening guides, ATS Verification (June 2026)</div>
+    </article>
+
+    <article class="post">
+      <div class="meta"><span class="tag">Hiring market</span><span>·</span><span>5 min read</span></div>
+      <h2>More job postings, fewer hires — what changed</h2>
+      <p class="dek">The U.S. hire rate fell to 3.1% in early 2026, a five-year low, even with millions of open roles. It's not that companies stopped hiring — it's that the funnel got longer.</p>
+      <div class="body">
+        <p>Two forces are compounding. First, generative AI made applying nearly free — candidates now submit to dozens of roles in the time it used to take to tailor one resume, which means popular listings can draw 50% more applications than in prior years. Volume went up; genuine fit did not.</p>
+        <p>Second, employers responded by adding more automated filtering rather than more recruiters. The result is a narrower, more mechanical first gate for everyone — including strong candidates who simply didn't format or word their resume the way the new systems expect.</p>
+        <p>The practical takeaway: in a tighter market, a resume that's precisely tailored to one role will consistently outperform ten generic ones sent to ten roles.</p>
+      </div>
+      <div class="src">Sources: BLS JOLTS (Feb 2026), LinkedIn / The Quest Organization, BambooHR</div>
+    </article>
+
+    <article class="post">
+      <div class="meta"><span class="tag">LLM screening</span><span>·</span><span>6 min read</span></div>
+      <h2>Keyword stuffing doesn't work anymore. Here's why.</h2>
+      <p class="dek">Workday, Greenhouse and Ashby have all shipped LLM-based screening that reads a resume more like a person than a keyword scanner — which changes what "optimizing" a resume actually means.</p>
+      <div class="body">
+        <p>The old advice — repeat the job title fifteen times, paste the skills list verbatim — was built for a purely lexical matcher. LLM screeners instead summarize your experience, judge whether your accomplishments plausibly match the role's scope, and draft recruiter-facing notes. Stuffed, repetitive text reads as noise to a model the same way it reads as noise to a human, and can actively hurt your summary.</p>
+        <p>What still works, and works better under LLM review, is specificity: real numbers, real scope, real outcomes. "Managed a team" tells a screener nothing. "Led a 6-person team to cut onboarding time 34% in two quarters" gives both a keyword match and a judgment signal a model can act on.</p>
+        <div class="cta"><a class="btn btn-accent" href="index.html#pricing">See resume rewrite pricing →</a></div>
+      </div>
+      <div class="src">Source: ATS Verification, June 2026</div>
+    </article>
+
+    <article class="post">
+      <div class="meta"><span class="tag">Strategy</span><span>·</span><span>4 min read</span></div>
+      <h2>The 70-point rule of thumb, explained</h2>
+      <p class="dek">Our scanner returns a 0–100 ATS score. Here's what those numbers actually mean in practice, and why the line at 70 isn't arbitrary.</p>
+      <div class="body">
+        <p>Across the resumes we've scanned, a score below 70 correlates strongly with resumes that have at least one structural problem — thin keyword coverage, unquantified bullets, or a parsing risk — the kind of gap that gets a resume auto-filtered before a recruiter ever sees it. Above 70, a resume is generally clearing the automated gate; above 85, it reads as a strong, well-matched candidate to both keyword and LLM-based systems.</p>
+        <p>The score isn't a grade on your career — it's a read on how legible your career is to a machine right now. That's also why it's fixable: the underlying issues are almost always specific and addressable, not a reflection of weak experience.</p>
+        <div class="cta"><a class="btn btn-accent" href="index.html#scan">Get your score free →</a></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="band">
+    <span class="kick" style="justify-content:center">Talk to a strategist</span>
+    <h2>Your American dream. One resume away.</h2>
+    <p>Book a free 20-minute consultation and we'll map the fastest path from your current resume to a callback.</p>
+    <a class="btn btn-accent" style="font-size:15px;padding:15px 30px" href="index.html#top">Book my consultation</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p style="margin-bottom:14px"><a href="index.html">← Back to Resumerica</a></p>
+    <small>© 2026 Resumerica. Scan powered by Claude. Statistics cited from BLS JOLTS, LinkedIn, BambooHR, and 2026 industry hiring reports.</small>
+  </div>
+</footer>
+
+</body>
+</html>

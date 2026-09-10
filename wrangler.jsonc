@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "resumerica",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-05-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "vars": {
+    // Swap to "claude-haiku-4-5-20251001" to cut scan costs
+    "MODEL": "claude-sonnet-5"
+  },
+  "observability": { "enabled": true }
+}

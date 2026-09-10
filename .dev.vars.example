@@ -1,0 +1,6 @@
+# Copy to .dev.vars for local testing (never commit .dev.vars)
+ANTHROPIC_API_KEY=sk-ant-...
+RESEND_API_KEY=re_...
+NOTIFY_EMAIL=you@example.com
+# Only after verifying your domain in Resend:
+# FROM_EMAIL=Resumerica <hello@yourdomain.com>

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resumerica — Your American Dream. One Resume Away.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F0E4; --bg-2:#EFE9DA; --surface:#FCFAF3; --surface-2:#F1EBDC; --surface-3:#E7E0CE;
+    --ink:#14264A; --ink-2:#3A4869; --muted:#6A7286; --faint:#A69F8E;
+    --line:#E4DCC7; --line-2:#D5CBB1;
+    --navy:#14264A; --navy-2:#1F3763; --oxblood:#7A1F2B; --oxblood-2:#98283A; --oxblood-soft:#EFE0DD;
+    --gold:#B0842C;
+    --shadow:0 26px 60px -34px rgba(20,38,74,.4); --shadow-sm:0 8px 22px -14px rgba(20,38,74,.28);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.65;font-size:16px;overflow-x:hidden}
+  h1,h2{margin:0;font-family:"Fraunces",Georgia,serif;font-weight:400;letter-spacing:-.02em;line-height:1.08}
+  h3,h4{margin:0;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+  em{font-style:italic;color:var(--oxblood)}
+  .mono{font-family:"JetBrains Mono",monospace}
+  button{font-family:inherit;cursor:pointer;border:none}
+  .kick{display:inline-flex;align-items:center;gap:12px;font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--oxblood)}
+  .flagrule{display:inline-flex;flex-direction:column;gap:2px;width:26px}
+  .flagrule i{height:2px;border-radius:2px}
+  .flagrule i:nth-child(1){background:var(--oxblood)}
+  .flagrule i:nth-child(2){background:var(--navy)}
+  .flagrule i:nth-child(3){background:var(--oxblood);opacity:.45}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;border:1px solid var(--line-2);font-size:12px;font-weight:500;color:var(--ink-2);letter-spacing:.02em}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:9px;font-weight:600;font-size:14.5px;transition:transform .16s ease,background .16s,border-color .16s,color .16s}
+  .btn-accent{background:var(--oxblood);color:#FCFAF3}
+  .btn-accent:hover{background:var(--oxblood-2);transform:translateY(-1px)}
+  .btn-navy{background:var(--navy);color:#FCFAF3}
+  .btn-navy:hover{background:var(--navy-2);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--navy);border:1px solid var(--line-2)}
+  .btn-ghost:hover{border-color:var(--navy);transform:translateY(-1px)}
+  :focus-visible{outline:2px solid var(--oxblood);outline-offset:2px;border-radius:5px}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(245,240,228,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:11px;color:var(--navy)}
+  .brand svg{height:30px;width:auto;flex:none}
+  .brand b{font-family:"Fraunces",serif;font-weight:600;font-size:22px;letter-spacing:.01em;color:var(--navy)}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{color:var(--muted);font-weight:500;font-size:14px;transition:color .15s}
+  .nav-links a:hover{color:var(--navy)}
+  .nav .btn{padding:9px 17px;font-size:13.5px}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;padding:0}
+  .hero .flagwash{position:absolute;top:0;right:0;width:46%;height:100%;opacity:.045;pointer-events:none;
+    background:repeating-linear-gradient(0deg,var(--oxblood) 0 7px,transparent 7px 14px,var(--navy) 14px 21px,transparent 21px 28px)}
+  .hero-in{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center;padding:88px 0 84px}
+  .hero .kick{margin-bottom:24px}
+  .hero h1{font-size:clamp(40px,5.6vw,66px);color:var(--navy)}
+  .hero .lede{font-size:18px;color:var(--ink-2);max-width:500px;margin-top:26px}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+  .hero-bul{display:flex;gap:24px;flex-wrap:wrap;margin-top:28px}
+  .hero-bul span{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}
+  .hero-bul svg{color:var(--oxblood)}
+  .hero-anim>*{opacity:0;transform:translateY(12px);animation:rise .8s ease forwards}
+  .hero-anim>*:nth-child(1){animation-delay:.05s}.hero-anim>*:nth-child(2){animation-delay:.15s}
+  .hero-anim>*:nth-child(3){animation-delay:.26s}.hero-anim>*:nth-child(4){animation-delay:.37s}.hero-anim>*:nth-child(5){animation-delay:.48s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .prod{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:var(--shadow);opacity:0;animation:rise .9s .45s ease forwards}
+  .prod .ptop{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .prod .ptag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+  .prod .live{width:6px;height:6px;border-radius:50%;background:var(--oxblood)}
+  .prod .ring{position:relative;width:150px;height:150px;margin:16px auto 10px}
+  .prod .ring svg{transform:rotate(-90deg)}
+  .prod .ring .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .prod .ring .val b{font-family:"Fraunces",serif;font-weight:500;font-size:44px;line-height:1;color:var(--navy)}
+  .prod .ring .val span{font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--faint);margin-top:3px}
+  .prod .prow{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);padding:10px 0;border-top:1px solid var(--line)}
+  .prod .prow b{color:var(--navy);font-family:"JetBrains Mono",monospace;font-weight:500}
+  .prod .go{width:100%;margin-top:16px;padding:11px;border-radius:9px;font-size:13.5px}
+
+  /* stat strip */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2)}
+  .stats-in{display:flex;flex-wrap:wrap}
+  .stats-in div{flex:1;min-width:180px;padding:28px 28px 28px 0;margin-right:28px;border-right:1px solid var(--line)}
+  .stats-in div:last-child{border:none;margin:0}
+  .stats .n{font-family:"Fraunces",serif;font-weight:400;font-size:30px;line-height:1;color:var(--navy)}
+  .stats .l{font-size:12.5px;color:var(--muted);margin-top:8px;max-width:200px}
+
+  section{padding:90px 0;position:relative}
+  .sec-head{max-width:640px;margin-bottom:52px}
+  .sec-head h2{font-size:clamp(28px,3.6vw,42px);margin-top:18px;color:var(--navy)}
+  .sec-head p{color:var(--muted);font-size:16.5px;margin-top:16px}
+
+  /* HOW */
+  .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .hcard{background:var(--surface);padding:28px 24px;transition:.2s}
+  .hcard:hover{background:#fff}
+  .hcard .no{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--oxblood)}
+  .hcard .ic{width:26px;height:26px;margin:16px 0 14px;color:var(--navy)}
+  .hcard h3{font-size:16.5px;margin-bottom:8px;color:var(--navy)}
+  .hcard p{color:var(--muted);font-size:13.5px}
+
+  /* SCANNER */
+  .scanner{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stepper{display:flex;gap:0;margin-bottom:36px;flex-wrap:wrap;align-items:center}
+  .step{display:flex;align-items:center;gap:9px;padding-right:22px;margin-right:22px;color:var(--faint);font-size:13px;font-weight:500;font-family:"JetBrains Mono",monospace}
+  .step .num{width:22px;height:22px;border-radius:50%;background:var(--surface);border:1px solid var(--line-2);display:grid;place-items:center;font-size:11px;transition:.3s}
+  .step.active{color:var(--navy)}.step.active .num{background:var(--oxblood);color:#FCFAF3;border-color:transparent}
+  .step.done{color:var(--ink-2)}.step.done .num{background:var(--navy);color:#FCFAF3;border-color:transparent}
+
+  .scan-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .drop{border:1.5px dashed var(--line-2);border-radius:12px;padding:34px 24px;text-align:center;transition:.16s;cursor:pointer;background:var(--surface-2)}
+  .drop:hover,.drop.drag{border-color:var(--oxblood);background:var(--oxblood-soft)}
+  .drop .ic{width:36px;height:36px;margin:0 auto 12px;color:var(--oxblood)}
+  .drop h4{font-size:16.5px;margin:0 0 5px;color:var(--navy)}
+  .drop p{color:var(--muted);font-size:13px}
+  .drop .file{margin-top:12px;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--oxblood)}
+  .demo-row{margin-top:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--faint)}
+  .chipbtn{font-family:"JetBrains Mono",monospace;font-size:12px;padding:7px 13px;border-radius:8px;background:var(--surface);border:1px solid var(--line-2);color:var(--ink-2);transition:.15s}
+  .chipbtn:hover{border-color:var(--oxblood);color:var(--oxblood)}
+  .email-row{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+  .email-row input{flex:1;min-width:200px;padding:12px 14px;border-radius:9px;border:1px solid var(--line-2);background:#fff;color:var(--navy);font-size:14.5px;font-family:inherit}
+  .email-row input::placeholder{color:var(--faint)}
+  .fineprint{font-size:12px;color:var(--faint);margin-top:14px}
+
+  .stage{min-height:356px;position:relative}
+  .stage-panel{display:none}.stage-panel.on{display:block;animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:scale(.99)}to{opacity:1;transform:none}}
+  .stage-idle{border:1px solid var(--line);border-radius:16px;min-height:356px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--faint);padding:30px;background:var(--surface)}
+  .stage-idle .ic{width:34px;height:34px;color:var(--line-2);margin-bottom:14px}
+  .stage-idle .mono{font-size:12.5px}
+
+  .mockdoc{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;min-height:356px;overflow:hidden;box-shadow:var(--shadow-sm)}
+  .md-top{display:flex;justify-content:space-between;align-items:flex-start}
+  .md-name{height:14px;width:44%;background:var(--navy);border-radius:4px}
+  .md-sub{height:7px;width:62%;background:#cdd2dc;margin-top:8px;border-radius:3px}
+  .md-badge{font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--muted);border:1px solid var(--line);padding:3px 6px;border-radius:5px}
+  .md-sec{margin-top:18px}
+  .md-lab{font-family:"JetBrains Mono",monospace;font-size:9.5px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--oxblood)}
+  .md-line{height:6px;background:#e9eaee;border-radius:3px;margin-top:8px}
+  .beam{position:absolute;left:0;right:0;height:60px;top:-66px;background:linear-gradient(180deg,transparent,rgba(20,38,74,.08) 50%,transparent);border-top:1px solid rgba(122,31,43,.45);border-bottom:1px solid rgba(122,31,43,.45)}
+  .beam.run{animation:beamdown 2.3s cubic-bezier(.4,0,.6,1)}
+  @keyframes beamdown{0%{top:-66px}100%{top:100%}}
+  .callout{position:absolute;font-family:"JetBrains Mono",monospace;font-size:11px;padding:5px 10px;border-radius:8px;background:var(--navy);color:#FCFAF3;box-shadow:var(--shadow-sm);opacity:0;transform:translateY(6px) scale(.94);pointer-events:none;white-space:nowrap;z-index:3}
+  .callout.show{opacity:1;transform:none;transition:.3s cubic-bezier(.2,.9,.3,1.3)}
+  .callout .ok{color:#9fd0b4;font-weight:700}
+
+  .gauge-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;text-align:center;min-height:356px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring-wrap{position:relative;width:200px;height:200px}
+  .ring-wrap svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring-center .score{font-family:"Fraunces",serif;font-weight:400;font-size:62px;line-height:1;color:var(--navy)}
+  .ring-center .out{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--faint);margin-top:3px}
+  .ring-center .verdict{font-weight:600;font-size:13px;margin-top:9px}
+  .gauge-tag{margin-top:18px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted)}
+
+  /* REPORT */
+  .report{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:32px;display:none}
+  .report.show{display:block;animation:fade .5s ease}
+  .rhead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .rhead .rtitle{font-family:"Fraunces",serif;font-size:23px;font-weight:400;color:var(--navy)}
+  .rhead .role{font-family:"JetBrains Mono",monospace;color:var(--muted);font-size:12.5px;margin-top:7px}
+  .report .summary{color:var(--ink-2);font-size:16px;margin-bottom:26px;max-width:780px}
+  .bars{display:grid;gap:15px}
+  .bar-row{display:grid;grid-template-columns:250px 1fr 40px;gap:14px;align-items:center;font-size:13.5px}
+  .bar-row .lab{color:var(--navy);font-weight:600}
+  .bar-row .lab small{display:block;font-weight:400;color:var(--muted);font-size:11.5px;margin-top:3px;line-height:1.35}
+  .bar-track{height:7px;border-radius:6px;background:var(--surface-3);overflow:hidden}
+  .bar-fill{height:100%;border-radius:6px;width:0;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+  .bar-row .pct{font-family:"JetBrains Mono",monospace;text-align:right;color:var(--navy);font-weight:500}
+
+  .breakdown{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+  .bd-col{border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--surface-2)}
+  .bd-col.good{border-top:2px solid var(--navy)}
+  .bd-col.bad{border-top:2px solid var(--oxblood)}
+  .bd-col h5{display:flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px;font-weight:700}
+  .bd-col.good h5{color:var(--navy)}.bd-col.bad h5{color:var(--oxblood)}
+  .bd-col h5 .cnt{font-family:"JetBrains Mono",monospace;font-size:11px;padding:2px 7px;border-radius:6px;margin-left:auto;font-weight:500}
+  .bd-col.good .cnt{background:rgba(20,38,74,.09);color:var(--navy)}
+  .bd-col.bad .cnt{background:var(--oxblood-soft);color:var(--oxblood)}
+  .bd-list{list-style:none;margin:0;padding:0;display:grid;gap:13px}
+  .bd-list li{font-size:13.5px;color:var(--ink-2);padding-left:24px;position:relative;line-height:1.5}
+  .good .bd-list li::before{content:"✓";position:absolute;left:0;top:-1px;color:var(--navy);font-weight:800}
+  .issue{padding-left:24px;position:relative}
+  .issue::before{content:"✕";position:absolute;left:0;top:0;color:var(--oxblood);font-weight:700;font-size:12px}
+  .issue .p{font-size:13.5px;color:var(--navy);font-weight:600;line-height:1.45}
+  .issue .f{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+  .issue .f b{color:var(--oxblood);font-weight:700;font-size:11px;letter-spacing:.04em;margin-right:6px;text-transform:uppercase}
+  .kw{margin-top:30px}
+  .kw h5{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin:0 0 14px;font-weight:700}
+  .kw .hint{font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;font-size:12.5px;margin-left:8px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font-family:"JetBrains Mono",monospace;font-size:12px;background:var(--oxblood-soft);color:var(--oxblood);padding:5px 11px;border-radius:7px;border:1px solid #e6cfcc}
+
+  .verdict-block{margin-top:30px;display:none}.verdict-block.show{display:block;animation:fade .5s ease}
+  .cta-panel{border-radius:12px;padding:28px;display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+  .cta-panel.low{background:var(--oxblood-soft);border:1px solid #e6cfcc}
+  .cta-panel h3{font-family:"Fraunces",serif;font-size:22px;font-weight:400;color:var(--navy)}
+  .cta-panel p{color:var(--ink-2);font-size:14px;max-width:520px;margin-top:6px}
+  .upsell-head{margin-top:28px;margin-bottom:18px}
+  .upsell-head h3{font-family:"Fraunces",serif;font-size:22px;font-weight:400;color:var(--navy)}
+  .upsell-head p{color:var(--muted);font-size:14px;margin-top:6px}
+  .upsell-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .up-card{border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px;background:var(--surface-2);transition:.16s}
+  .up-card:hover{border-color:var(--navy)}
+  .up-card .ic{width:24px;height:24px;color:var(--oxblood)}
+  .up-card h4{font-size:15.5px;color:var(--navy)}
+  .up-card p{color:var(--muted);font-size:13px;flex:1}
+  .up-card .price{font-family:"JetBrains Mono",monospace;color:var(--navy);font-size:13px}
+  .up-card button{margin-top:6px;width:100%;padding:10px;border-radius:9px}
+
+  /* CASES */
+  .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .case{background:var(--surface);padding:30px;transition:.2s;position:relative}
+  .case:hover{background:#fff}
+  .case .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+  .case .stat{font-family:"Fraunces",serif;font-weight:400;font-size:46px;line-height:1;margin:14px 0 8px;color:var(--navy);letter-spacing:-.02em}
+  .case .stat span{font-size:26px;color:var(--oxblood)}
+  .case h3{font-family:"Fraunces",serif;font-weight:400;font-size:21px;margin:8px 0 10px;color:var(--navy)}
+  .case p{color:var(--ink-2);font-size:14px}
+  .case .src{margin-top:16px;font-size:11.5px;color:var(--faint);font-family:"JetBrains Mono",monospace}
+  .case .takeaway{max-height:0;opacity:0;overflow:hidden;transition:.3s ease;font-size:13.5px;color:var(--navy);border-left:2px solid var(--oxblood);padding:0 0 0 14px;font-style:italic;font-family:"Fraunces",serif}
+  .case:hover .takeaway,.case:focus-within .takeaway{max-height:130px;opacity:1;margin-top:16px;padding:4px 0 4px 14px}
+  .case .takeaway b{color:var(--oxblood);font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:12px}
+
+  /* TESTIMONIALS */
+  .testimonials{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .tmasonry{columns:3;column-gap:16px}
+  .tcard{break-inside:avoid;margin-bottom:16px;border:1px solid var(--line);border-radius:14px;padding:24px;background:var(--surface)}
+  .tcard .q{font-family:"Fraunces",serif;font-weight:400;font-size:15.5px;line-height:1.55;color:var(--navy)}
+  .tcard .who{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+  .tcard .av{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#FCFAF3;display:grid;place-items:center;font-family:"Fraunces",serif;font-size:15px;flex:none}
+  .tcard:nth-child(3n+2) .av{background:var(--oxblood)}
+  .tcard .who b{font-weight:600;font-size:13px;color:var(--navy);display:block}
+  .tcard .who span{font-size:12px;color:var(--muted)}
+
+  /* PRICING — à la carte menu */
+  .menu{border-top:1px solid var(--line-2)}
+  .mitem{display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;padding:22px 4px;border-bottom:1px solid var(--line);transition:.15s;cursor:pointer}
+  .mitem:hover{background:var(--surface);padding-left:14px;padding-right:14px}
+  .mitem .mname{font-family:"Fraunces",serif;font-size:20px;color:var(--navy);display:flex;align-items:center;gap:12px}
+  .mitem .mtag{font-family:"Inter",sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#FCFAF3;background:var(--oxblood);padding:3px 8px;border-radius:5px;font-weight:600}
+  .mitem .mdesc{color:var(--muted);font-size:13.5px;margin-top:4px}
+  .mitem .mprice{font-family:"Fraunces",serif;font-size:26px;color:var(--navy);white-space:nowrap}
+  .mitem .mbook{font-size:13px;font-weight:600;color:var(--oxblood);white-space:nowrap}
+  .menu-note{margin-top:22px;font-size:13.5px;color:var(--muted)}
+  .menu-note b{color:var(--navy);font-weight:600}
+
+  /* FAQ */
+  .faq{max-width:820px}
+  .faq details{border-bottom:1px solid var(--line);padding:6px 0}
+  .faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;font-size:17px;color:var(--navy);font-family:"Fraunces",serif;font-weight:400}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:6px;top:17px;font-size:22px;color:var(--oxblood);transition:transform .2s;font-family:"Inter",sans-serif;font-weight:300}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq .anc{color:var(--muted);font-size:14.5px;padding:0 40px 22px 0;line-height:1.6}
+
+  /* CTA BAND */
+  .cta-band{position:relative;overflow:hidden}
+  .cta-inner{background:var(--navy);border-radius:20px;padding:60px;text-align:center;position:relative;overflow:hidden}
+  .cta-inner .flagwash{position:absolute;inset:0;opacity:.06;pointer-events:none;background:repeating-linear-gradient(0deg,#fff 0 7px,transparent 7px 14px)}
+  .cta-inner .kick{color:#D9A9AE;position:relative}
+  .cta-inner h2{font-size:clamp(28px,3.6vw,46px);color:#FCFAF3;position:relative}
+  .cta-inner p{color:#C4CBDA;margin:18px auto 30px;max-width:520px;font-size:16.5px;position:relative}
+  .cta-inner .btn-accent{position:relative}
+
+  footer{background:var(--bg-2);color:var(--muted);padding:20px 0 40px;border-top:1px solid var(--line-2)}
+  .foot-in{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-top:48px}
+  .foot-logo svg{width:250px;height:auto;max-width:100%}
+  .foot-cols{display:flex;gap:56px;flex-wrap:wrap}
+  footer a{color:var(--muted)}footer a:hover{color:var(--navy)}
+  footer .col b{color:var(--navy);font-weight:600;display:block;margin-bottom:13px;font-size:14px}
+  footer .col a{display:block;margin-bottom:10px;font-size:14px}
+  footer small{display:block;margin-top:28px;color:var(--faint);font-size:12px;border-top:1px solid var(--line);padding-top:24px}
+
+  /* MODAL */
+  .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.show{display:flex}
+  .modal-bg{position:absolute;inset:0;background:rgba(20,26,40,.55);backdrop-filter:blur(4px)}
+  .modal-card{position:relative;background:var(--surface);border:1px solid var(--line-2);border-radius:16px;max-width:500px;width:100%;padding:34px;box-shadow:var(--shadow);max-height:92vh;overflow:auto;animation:pop .28s ease}
+  .modal-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--oxblood),var(--navy))}
+  @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+  .modal-card h3{font-family:"Fraunces",serif;font-size:24px;font-weight:400;color:var(--navy);margin-top:12px}
+  .modal-card .ctx{color:var(--oxblood);font-weight:600;font-size:13px;margin-top:6px}
+  .field{margin-top:15px}
+  .field label{display:block;font-size:12.5px;font-weight:600;margin-bottom:6px;color:var(--ink-2)}
+  .field input,.field select,.field textarea{width:100%;padding:12px 13px;border-radius:9px;border:1px solid var(--line-2);font-size:14.5px;font-family:inherit;background:#fff;color:var(--navy)}
+  .field textarea{resize:vertical;min-height:74px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line-2);font-size:17px;color:var(--muted)}
+  .modal-ok{text-align:center;padding:14px 0}
+  .modal-ok .badge{width:60px;height:60px;margin:0 auto 14px;color:var(--navy)}
+  .modal-ok h3{font-family:"Fraunces",serif}
+
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(140%);background:var(--navy);color:#FCFAF3;padding:13px 20px;border-radius:11px;z-index:120;box-shadow:var(--shadow);font-size:14px;transition:transform .3s ease;max-width:90vw}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .hero-in,.scan-grid,.breakdown{grid-template-columns:1fr}
+    .hero-in{gap:36px;padding:56px 0}
+    .how-grid,.case-grid{grid-template-columns:1fr 1fr}
+    .tmasonry{columns:2}
+    .upsell-grid{grid-template-columns:1fr}
+    .bar-row{grid-template-columns:150px 1fr 36px}
+    .cta-inner{padding:40px 24px}
+    .mitem{grid-template-columns:1fr auto}
+    .mitem .mbook{display:none}
+  }
+  @media(max-width:560px){section{padding:60px 0}.how-grid,.case-grid{grid-template-columns:1fr}.tmasonry{columns:1}.stats-in div{min-width:44%}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Resumerica home">
+      <svg viewBox="0 0 44 40" aria-hidden="true"><rect x="0" y="18" width="11" height="22" rx="1.5" fill="#14264A"/><rect x="16.5" y="9" width="11" height="31" rx="1.5" fill="#14264A"/><rect x="33" y="0" width="11" height="40" rx="1.5" fill="#7A1F2B"/></svg>
+      <b>Resumerica</b>
+    </a>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#scan">Free scan</a>
+      <a href="#cases">Field report</a>
+      <a href="#pricing">Pricing</a>
+      <a href="blog.html">Insights</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button class="btn btn-accent" onclick="openBooking('General consultation')">Book consultation</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="flagwash"></div>
+  <div class="wrap hero-in">
+    <div class="hero-anim">
+      <span class="kick"><span class="flagrule"><i></i><i></i><i></i></span> Your American dream · one resume away</span>
+      <h1>Beat the machine that reads your resume in <em>under a second.</em></h1>
+      <p class="lede">Before a recruiter ever sees it, an AI screener scores and ranks your resume. We show you precisely how those systems judge yours — and rewrite it, by hand, to move you up the list.</p>
+      <div class="hero-cta">
+        <a href="#scan" class="btn btn-accent">Scan my resume free
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <button class="btn btn-ghost" onclick="openBooking('General consultation')">Book a consultation</button>
+      </div>
+      <div class="hero-bul">
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> No account needed</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Results in ~30 seconds</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Powered by Claude</span>
+      </div>
+    </div>
+    <div class="prod">
+      <div class="ptop"><div class="ptag"><span class="live"></span> Live scan preview</div><span class="mono" style="font-size:10px;color:var(--faint)">sample.pdf</span></div>
+      <div class="ring">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="64" fill="none" stroke="var(--surface-3)" stroke-width="9"/>
+          <circle cx="75" cy="75" r="64" fill="none" stroke="var(--navy)" stroke-width="9" stroke-linecap="round" stroke-dasharray="402" stroke-dashoffset="56"/>
+        </svg>
+        <div class="val"><b>86</b><span>ATS / 100</span></div>
+      </div>
+      <div class="prow"><span>Keyword & role match</span><b>88</b></div>
+      <div class="prow"><span>Impact & metrics</span><b>84</b></div>
+      <div class="prow"><span>Parseability</span><b>92</b></div>
+      <a href="#scan" class="btn btn-navy go">See your score →</a>
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<section class="stats" style="padding:0">
+  <div class="wrap stats-in reveal">
+    <div><div class="n">~0.5%</div><div class="l">of job-board applicants get hired</div></div>
+    <div><div class="n"><span class="count" data-to="50" data-prefix="+" data-suffix="%">+0%</span></div><div class="l">more applicants per role vs. prior years</div></div>
+    <div><div class="n">&lt;1s</div><div class="l">for an AI to reject a resume</div></div>
+    <div><div class="n"><span class="count" data-to="3.1" data-dec="1" data-suffix="%">0.0%</span></div><div class="l">U.S. hire rate — a five-year low</div></div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kick">The method</span>
+      <h2>Four steps, quietly precise.</h2>
+      <p>A clear path from a PDF to the callback — read by the same kind of AI that screens you, then tailored by hand.</p>
+    </div>
+    <div class="how-grid reveal">
+      <div class="hcard"><div class="no">01</div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Upload your PDF</h3><p>Drop in your resume — or try a live sample. Nothing is stored.</p></div>
+      <div class="hcard"><div class="no">02</div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <h3>The machine reads it</h3><p>We analyze it like Workday, Greenhouse & Ashby do in 2026.</p></div>
+      <div class="hcard"><div class="no">03</div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 018-8 8 8 0 018 8M8 21h8M12 13l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <h3>Get your score</h3><p>A 0–100 score, your strengths, the fixes that matter, and keyword gaps.</p></div>
+      <div class="hcard"><div class="no">04</div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Fix it & win</h3><p>Under 70? We rebuild it. Over 70? We refine LinkedIn, letters & interviews.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCANNER -->
+<section class="scanner" id="scan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kick">The free scan</span>
+      <h2>Run your resume through the machine.</h2>
+      <p>Upload a PDF — or tap a sample to walk the whole experience. You'll get a score, what's working for you, and exactly what to change.</p>
+    </div>
+
+    <div class="stepper" id="stepper">
+      <div class="step active" id="st1"><span class="num">1</span> Upload</div>
+      <div class="step" id="st2"><span class="num">2</span> Analyze</div>
+      <div class="step" id="st3"><span class="num">3</span> Score</div>
+      <div class="step" id="st4"><span class="num">4</span> Next steps</div>
+    </div>
+
+    <div class="scan-grid">
+      <div class="panel">
+        <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload resume PDF">
+          <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h4>Drop your resume here</h4>
+          <p>PDF only · 1–2 pages · never stored</p>
+          <div class="file mono" id="fileName"></div>
+          <input type="file" id="fileInput" accept="application/pdf" hidden>
+        </div>
+        <div class="demo-row">
+          <span>No file handy? Try a sample →</span>
+          <button class="chipbtn" onclick="demoScan('grad')">Recent grad</button>
+          <button class="chipbtn" onclick="demoScan('mid')">Mid-level</button>
+          <button class="chipbtn" onclick="demoScan('senior')">Senior</button>
+        </div>
+        <div class="email-row">
+          <input type="email" id="emailInput" placeholder="you@email.com — for your full report">
+          <button class="btn btn-accent" id="scanBtn" onclick="startScan()">Scan &amp; email report</button>
+        </div>
+        <p class="fineprint">Your resume is analyzed securely and never stored on our servers.</p>
+      </div>
+
+      <div class="stage">
+        <div class="stage-panel on" id="stageIdle">
+          <div class="stage-idle">
+            <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div class="mono">Awaiting your resume…</div>
+            <div class="mono" style="margin-top:6px;color:var(--line-2)">upload a PDF or tap a sample</div>
+          </div>
+        </div>
+        <div class="stage-panel" id="stageScan">
+          <div class="mockdoc" id="mockdoc">
+            <div class="beam" id="beam"></div>
+            <div class="md-top"><div><div class="md-name"></div><div class="md-sub"></div></div><div class="md-badge">RESUME.PDF</div></div>
+            <div class="md-sec"><div class="md-lab">Experience</div><div class="md-line" style="width:100%"></div><div class="md-line" style="width:92%"></div><div class="md-line" style="width:78%"></div></div>
+            <div class="md-sec"><div class="md-lab">Skills</div><div class="md-line" style="width:88%"></div><div class="md-line" style="width:64%"></div></div>
+            <div class="md-sec"><div class="md-lab">Education</div><div class="md-line" style="width:70%"></div></div>
+            <div class="callout" id="co1" style="top:14%;right:14px">Name detected <span class="ok">✓</span></div>
+            <div class="callout" id="co2" style="top:40%;left:16px">5 skills parsed <span class="ok">✓</span></div>
+            <div class="callout" id="co3" style="top:62%;right:14px">Dates: clean <span class="ok">✓</span></div>
+            <div class="callout" id="co4" style="top:82%;left:16px">Scoring impact…</div>
+          </div>
+        </div>
+        <div class="stage-panel" id="stageGauge">
+          <div class="gauge-card">
+            <div class="ring-wrap">
+              <svg viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="86" fill="none" stroke="var(--surface-3)" stroke-width="9"/>
+                <circle id="gaugeArc" cx="100" cy="100" r="86" fill="none" stroke="var(--navy)" stroke-width="9" stroke-linecap="round" stroke-dasharray="540" stroke-dashoffset="540"/>
+              </svg>
+              <div class="ring-center">
+                <div class="score" id="scoreNum">0</div>
+                <div class="out">/ 100 ATS</div>
+                <div class="verdict" id="verdictWord"></div>
+              </div>
+            </div>
+            <div class="gauge-tag" id="gaugeTag"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="report" id="report">
+      <div class="rhead">
+        <div><div class="rtitle">Your ATS report</div><div class="role mono" id="detectedRole"></div></div>
+        <div class="mono" id="emailedTo" style="font-size:12px;color:var(--faint)"></div>
+      </div>
+      <p class="summary" id="reportSummary"></p>
+      <div class="bars" id="bars"></div>
+      <div class="breakdown">
+        <div class="bd-col good"><h5>Favoring your score <span class="cnt" id="strengthCount"></span></h5><ul class="bd-list" id="strengths"></ul></div>
+        <div class="bd-col bad"><h5>Hurting your score — change these <span class="cnt" id="issueCount"></span></h5><div class="bd-list" id="issues"></div></div>
+      </div>
+      <div class="kw"><h5>Keywords to add <span class="hint">terms the target role expects that your resume is missing</span></h5><div class="chips" id="keywordGaps"></div></div>
+      <div class="verdict-block" id="verdictBlock"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kick">Field report</span>
+      <h2>The job search didn't get harder. It got re-engineered.</h2>
+      <p>Four findings on why more openings are producing fewer hires — and how hiring teams now use AI to decide who's worth a human's time. Hover any card for what it means for you.</p>
+    </div>
+    <div class="case-grid reveal">
+      <article class="case" tabindex="0">
+        <div class="kicker">The application flood</div>
+        <div class="stat"><span class="count" data-to="50" data-prefix="+">+0</span><span>%</span></div>
+        <h3>AI made applying free — so everyone applies to everything</h3>
+        <p>Popular roles now draw up to 50% more applications than in prior years, largely from candidates using AI to submit in bulk. More volume, not better matches — which is exactly why screeners tightened up.</p>
+        <div class="takeaway"><b>Your edge —</b> a tailored, keyword-matched resume stands out in a pile of AI-generated sameness.</div>
+        <div class="src">LinkedIn / The Quest Organization · 2026</div>
+      </article>
+      <article class="case" tabindex="0">
+        <div class="kicker">The one-second gate</div>
+        <div class="stat">&lt;1<span>s</span></div>
+        <h3>Rejected before a human ever opens the file</h3>
+        <p>A recruiter might spend minutes on a resume — but an AI layer can decline it in under a second if it isn't optimized. ATS is now just the first of three or four AI systems scoring you before anyone human weighs in.</p>
+        <div class="takeaway"><b>Your edge —</b> clean, parseable formatting clears the first gate so a person actually sees you.</div>
+        <div class="src">2026 AI-screening guides / PassTheScan</div>
+      </article>
+      <article class="case" tabindex="0">
+        <div class="kicker">New tech on the other side</div>
+        <div class="stat">LLMs</div>
+        <h3>Workday, Greenhouse & Ashby now read like a person</h3>
+        <p>Major platforms have shipped LLM screening that summarizes each resume in plain language, scores it against the role, and drafts recruiter notes. Old keyword-stuffing tricks no longer clear the bar — meaning matters now.</p>
+        <div class="takeaway"><b>Your edge —</b> real, quantified accomplishments beat keyword stuffing when an LLM is reading.</div>
+        <div class="src">ATS Verification · June 2026</div>
+      </article>
+      <article class="case" tabindex="0">
+        <div class="kicker">More openings, fewer hires</div>
+        <div class="stat"><span class="count" data-to="3.1" data-dec="1">0.0</span><span>%</span></div>
+        <h3>The hire rate hit a five-year low</h3>
+        <p>Early 2026 saw the U.S. hires rate fall to 3.1% — the lowest since 2020 — even with 6.9 million open roles. Companies are filling more roles internally, so external applicants face a narrower door.</p>
+        <div class="takeaway"><b>Your edge —</b> in a tight market every callback counts, and small resume fixes move the odds.</div>
+        <div class="src">BLS JOLTS (Feb 2026) / BambooHR</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="stories">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kick"><span class="flagrule"><i></i><i></i><i></i></span> In their words</span>
+      <h2>Quiet results, from people who'd stopped hearing back.</h2>
+    </div>
+    <div class="tmasonry reveal">
+      <div class="tcard"><div class="q">"I had been applying for months with barely any responses. My new CV completely changed how I presented my experience. Within a few weeks, I started getting significantly more interview invitations. The CV was professional, targeted, and actually sounded like me."</div><div class="who"><div class="av">S</div><div><b>Sarah M.</b><span>Marketing Professional</span></div></div></div>
+      <div class="tcard"><div class="q">"The difference between my old CV and the one I received was incredible. My experience was always strong, but I wasn't communicating it properly. The new CV positioned me as a senior-level professional rather than just another applicant."</div><div class="who"><div class="av">M</div><div><b>Michael R.</b><span>Senior Operations Manager</span></div></div></div>
+      <div class="tcard"><div class="q">"I was transitioning into a completely different industry and had no idea how to make my previous experience relevant. The CV writer understood exactly how to reposition my skills and achievements. It gave me the confidence to start applying for roles I previously thought were out of reach."</div><div class="who"><div class="av">D</div><div><b>Daniel K.</b><span>Career Changer</span></div></div></div>
+      <div class="tcard"><div class="q">"My previous CV looked good but wasn't getting through ATS systems. The new version was much more focused, keyword-optimized, and aligned with the roles I was targeting. I started receiving interview calls almost immediately."</div><div class="who"><div class="av">A</div><div><b>Ahmed S.</b><span>Software Engineer</span></div></div></div>
+      <div class="tcard"><div class="q">"I wanted to apply for international positions but my CV wasn't competitive enough. The new CV presented my experience in a much more global and professional format. It made a huge difference to how I approached my job search."</div><div class="who"><div class="av">J</div><div><b>James T.</b><span>IT Professional</span></div></div></div>
+      <div class="tcard"><div class="q">"Professional, strategic, and far better than anything I could have written myself. My experience finally looked as strong on paper as it actually was."</div><div class="who"><div class="av">E</div><div><b>Emily R.</b><span>Finance Professional</span></div></div></div>
+      <div class="tcard"><div class="q">"I didn't just receive a CV — I received a complete personal-branding upgrade. My CV and LinkedIn profile now tell the same professional story, and recruiters are finally noticing me."</div><div class="who"><div class="av">O</div><div><b>Olivia M.</b><span>HR Specialist</span></div></div></div>
+      <div class="tcard"><div class="q">"As a fresh graduate, I thought I had nothing impressive to put on my CV. The writer helped turn my education, projects, internships, and skills into a CV that actually made me competitive."</div><div class="who"><div class="av">H</div><div><b>Hassan A.</b><span>Recent Graduate</span></div></div></div>
+      <div class="tcard"><div class="q">"They didn't just rewrite my CV — they changed the way I positioned myself in the job market. Every section had a purpose, my achievements were quantified, and the entire document felt tailored to the roles I was targeting. One of the best investments I've made in my career."</div><div class="who"><div class="av">J</div><div><b>John J.</b><span>Senior Professional</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kick">Services &amp; pricing</span>
+      <h2>Commission one. Or build the whole story.</h2>
+      <p>Every engagement starts with your free scan. From there, choose exactly what you need — à la carte, no packages you don't want.</p>
+    </div>
+    <div class="menu reveal">
+      <div class="mitem" onclick="openBooking('Resume — $99')">
+        <div><div class="mname">Resume <span class="mtag">Most requested</span></div><div class="mdesc">ATS-optimized, role-targeted, rewritten by hand to clear the machine.</div></div>
+        <div class="mprice">$99</div><div class="mbook">Book →</div>
+      </div>
+      <div class="mitem" onclick="openBooking('LinkedIn Profile Revamp — $75')">
+        <div><div class="mname">LinkedIn Profile Revamp</div><div class="mdesc">Headline to About, tuned so recruiters find you and stay.</div></div>
+        <div class="mprice">$75</div><div class="mbook">Book →</div>
+      </div>
+      <div class="mitem" onclick="openBooking('Career Biography — $50')">
+        <div><div class="mname">Career Biography</div><div class="mdesc">A polished professional bio for profiles, bids and speaking.</div></div>
+        <div class="mprice">$50</div><div class="mbook">Book →</div>
+      </div>
+      <div class="mitem" onclick="openBooking('Cover Letter — $40')">
+        <div><div class="mname">Cover Letter</div><div class="mdesc">A role-specific letter that passes AI reads and sounds like you.</div></div>
+        <div class="mprice">$40</div><div class="mbook">Book →</div>
+      </div>
+      <div class="mitem" onclick="openBooking('Interview Toolkit — $30')">
+        <div><div class="mname">Interview Toolkit</div><div class="mdesc">Frameworks and mock questions for AI-scored and live rounds.</div></div>
+        <div class="mprice">$30</div><div class="mbook">Book →</div>
+      </div>
+      <div class="mitem" onclick="openBooking('Follow-up / Thank-you Letter — $25')">
+        <div><div class="mname">Follow-up / Thank-you Letter</div><div class="mdesc">The note that keeps you top of mind after the interview.</div></div>
+        <div class="mprice">$25</div><div class="mbook">Book →</div>
+      </div>
+    </div>
+    <p class="menu-note"><b>Building the whole story?</b> Mention it in your consultation and we'll tailor a bundle across resume, LinkedIn and interview prep.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scanner" style="border-bottom:none">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kick">Questions</span>
+      <h2>Answered plainly.</h2>
+    </div>
+    <div class="faq reveal">
+      <details open><summary>How does the free scan actually work?</summary><div class="anc">You upload a PDF and it's analyzed the way a modern applicant-tracking system would read it — a blend of classic keyword parsing and the LLM screening now shipping in platforms like Workday, Greenhouse and Ashby. You get a 0–100 score, a category breakdown, your strengths, the specific fixes to make, and the keywords you're missing.</div></details>
+      <details><summary>Is my resume stored or shared?</summary><div class="anc">No. Your file is analyzed in-session to produce your report and isn't retained. In production, report delivery connects to your own email provider — nothing is sold or shared.</div></details>
+      <details><summary>What score do I actually need?</summary><div class="anc">As a rule of thumb, 70+ tends to clear the first automated gate, and 85+ reads as a strong candidate. Below 70, most screeners filter you out before a recruiter looks — which is where a rewrite pays for itself.</div></details>
+      <details><summary>What's included in a resume rewrite?</summary><div class="anc">A full rebuild engineered to parse cleanly, mirror the language of your target roles, and lead with quantified outcomes — written by hand, not auto-generated. Turnaround is typically a couple of days, with revisions to align on direction.</div></details>
+      <details><summary>Do you work with senior and executive resumes?</summary><div class="anc">Yes — much of our work is with experienced professionals leveling up. Senior resumes often score lower than expected because scope and impact get buried; the fixes are usually small but decisive.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="wrap reveal">
+    <div class="cta-inner">
+      <div class="flagwash"></div>
+      <span class="kick" style="justify-content:center;margin-bottom:18px">Talk to a strategist</span>
+      <h2>Your American dream. One resume away.</h2>
+      <p>Book a free 20-minute consultation. We'll review your scan, pinpoint what's costing you interviews, and map the fastest path to yes.</p>
+      <button class="btn btn-accent" style="font-size:15px;padding:15px 30px" onclick="openBooking('Free 20-minute strategy call')">Book my consultation</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div style="max-width:320px">
+        <div class="foot-logo">
+          <svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" aria-label="Resumerica">
+            <g transform="translate(0, 60)">
+              <rect x="0"  y="55"  width="30" height="50"  rx="1.5" fill="#14264A"/>
+              <rect x="38" y="30"  width="30" height="75"  rx="1.5" fill="#14264A"/>
+              <rect x="76" y="0"   width="30" height="105" rx="1.5" fill="#7A1F2B"/>
+            </g>
+            <text x="132" y="128" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-weight="700" fill="#14264A" letter-spacing="0.5">RESUMERICA</text>
+            <text x="134" y="160" font-family="Calibri, Arial, sans-serif" font-size="20" font-style="italic" fill="#7A1F2B">Your American Dream. One Resume Away.</text>
+          </svg>
+        </div>
+        <p style="margin-top:16px;font-size:13.5px;color:var(--muted)">Resume strategy for the AI hiring era. Tailored, quiet, effective.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="col"><b>Services</b><a href="#pricing">Resume</a><a href="#pricing">LinkedIn revamp</a><a href="#pricing">Cover letter</a><a href="#pricing">Interview toolkit</a></div>
+        <div class="col"><b>Company</b><a href="#how">How it works</a><a href="#scan">Free scan</a><a href="#cases">Field report</a><a href="blog.html">Insights</a><a href="#faq">FAQ</a></div>
+      </div>
+    </div>
+    <small>© 2026 Resumerica. Scan powered by Claude. Statistics cited from BLS JOLTS, LinkedIn, BambooHR, and 2026 industry hiring reports. This page is an interactive prototype — email delivery and booking connect to your live services in production.</small>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" aria-modal="true" role="dialog">
+  <div class="modal-bg" onclick="closeBooking()"></div>
+  <div class="modal-card">
+    <button class="close" onclick="closeBooking()" aria-label="Close">×</button>
+    <div id="modalForm">
+      <span class="pill">Book a consultation</span>
+      <h3>Let's map your path to the interview.</h3>
+      <div class="ctx" id="modalCtx"></div>
+      <div class="field"><label>Full name</label><input id="bkName" placeholder="Jordan Rivera"></div>
+      <div class="grid2">
+        <div class="field"><label>Email</label><input id="bkEmail" type="email" placeholder="you@email.com"></div>
+        <div class="field"><label>Phone (optional)</label><input id="bkPhone" placeholder="(555) 010-2026"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label>Preferred date</label><input id="bkDate" type="date"></div>
+        <div class="field"><label>Time</label><select id="bkTime"><option>9:00 AM</option><option>11:00 AM</option><option>1:00 PM</option><option>3:00 PM</option><option>5:00 PM</option></select></div>
+      </div>
+      <input id="bkWebsite" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <div class="field"><label>What do you want to fix?</label><textarea id="bkGoal" placeholder="e.g. Getting no callbacks for senior PM roles"></textarea></div>
+      <button class="btn btn-accent" style="width:100%;margin-top:18px" id="bkSubmit" onclick="submitBooking()">Request my consultation</button>
+    </div>
+    <div id="modalOk" class="modal-ok" style="display:none">
+      <svg class="badge" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Request received.</h3>
+      <p style="color:var(--muted);margin-top:10px" id="okMsg"></p>
+      <button class="btn btn-navy" style="margin-top:20px" onclick="closeBooking()">Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let pdfBase64=null,pdfFileName=null;
+
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('.count').forEach(runCount);io.unobserve(e.target);}});},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+function runCount(el){
+  if(el.dataset.done)return;el.dataset.done=1;
+  const to=parseFloat(el.dataset.to),dec=parseInt(el.dataset.dec||0),pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+  if(reduce){el.textContent=pre+to.toFixed(dec)+suf;return;}
+  let cur=0;const inc=to/40;
+  const t=setInterval(()=>{cur+=inc;if(cur>=to){cur=to;clearInterval(t);}el.textContent=pre+cur.toFixed(dec)+suf;},22);
+}
+
+const drop=document.getElementById('drop'),fileInput=document.getElementById('fileInput');
+drop.addEventListener('click',()=>fileInput.click());
+drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fileInput.click();}});
+drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('drag');});
+drop.addEventListener('dragleave',()=>drop.classList.remove('drag'));
+drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('drag');if(e.dataTransfer.files[0])handleFile(e.dataTransfer.files[0]);});
+fileInput.addEventListener('change',e=>{if(e.target.files[0])handleFile(e.target.files[0]);});
+function handleFile(file){
+  if(file.type!=='application/pdf'){toast('Please upload a PDF file.');return;}
+  if(file.size>5*1024*1024){toast('That PDF is over 5 MB — please export a smaller version.');return;}
+  pdfFileName=file.name;document.getElementById('fileName').textContent='✓ '+file.name;
+  const r=new FileReader();r.onload=()=>{pdfBase64=r.result.split(',')[1];};r.readAsDataURL(file);
+}
+
+function setStep(n){[1,2,3,4].forEach(i=>{const el=document.getElementById('st'+i);el.classList.remove('active','done');if(i<n)el.classList.add('done');else if(i===n)el.classList.add('active');});}
+function showPanel(id){['stageIdle','stageScan','stageGauge'].forEach(p=>document.getElementById(p).classList.toggle('on',p===id));}
+
+function playBeam(){
+  return new Promise(res=>{
+    const beam=document.getElementById('beam');
+    const cos=['co1','co2','co3','co4'].map(id=>document.getElementById(id));
+    cos.forEach(c=>c.classList.remove('show'));
+    if(reduce){cos.forEach(c=>c.classList.add('show'));return res();}
+    beam.classList.remove('run');void beam.offsetWidth;beam.classList.add('run');
+    [500,1050,1550,2050].forEach((t,i)=>setTimeout(()=>cos[i].classList.add('show'),t));
+    setTimeout(res,2450);
+  });
+}
+
+async function runScan(resultPromise,email){
+  const btn=document.getElementById('scanBtn');btn.disabled=true;const orig=btn.textContent;btn.textContent='Scanning…';
+  document.getElementById('report').classList.remove('show');
+  document.getElementById('verdictBlock').classList.remove('show');
+  setStep(2);showPanel('stageScan');
+  try{
+    const [data]=await Promise.all([resultPromise,playBeam()]);
+    setStep(3);showPanel('stageGauge');
+    renderResult(data,email);
+  }catch(err){
+    console.error(err);showPanel('stageIdle');setStep(1);
+    document.querySelector('#stageIdle .mono').textContent='Scan failed — try again';
+    toast("We couldn't read that resume. Try re-uploading the PDF.");
+  }finally{btn.disabled=false;btn.textContent=orig;}
+}
+
+function startScan(){
+  if(!pdfBase64){toast('Upload a PDF or tap a sample to see the full experience.');return;}
+  if(pdfBase64==='(demo)'){toast('That was a sample — upload a real PDF to scan your own.');return;}
+  const email=document.getElementById('emailInput').value.trim();
+  runScan(callClaude(pdfBase64,email),email);
+}
+
+async function callClaude(base64,email){
+  const res=await fetch("/api/scan",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({pdf:base64,email:email||"",fileName:pdfFileName||""})});
+  const data=await res.json().catch(()=>({}));
+  if(!res.ok)throw new Error(data.error||("API "+res.status));
+  return data;
+}
+
+const DEMO={
+  grad:{atsScore:58,detectedRole:"Entry-level Marketing Coordinator",verdict:"Getting filtered out",
+    summary:"Solid raw material, but the machine struggles here — light on role keywords and almost no quantified results. Most 2026 screeners would rank this below the interview cut.",
+    categories:[
+      {name:"Parseability & formatting",score:72,note:"Single column parses, but a header table risks it"},
+      {name:"Section structure",score:63,note:"Standard sections, no dedicated Skills block"},
+      {name:"Keyword & role match",score:44,note:"Missing most core marketing terms"},
+      {name:"Impact & metrics",score:41,note:"Bullets describe duties, not measurable results"},
+      {name:"Contact & links",score:80,note:"Email + phone present, no LinkedIn/portfolio"}],
+    strengths:["Clean single-column layout that parsers read without errors","Standard, recognizable section headings (Experience, Education)","Reverse-chronological work history with clear, consistent dates","Complete contact block with a professional email address"],
+    issues:[
+      {problem:"Almost no quantified results — bullets list tasks, not outcomes",fix:"Add 3–4 numbers per role (%, $, volume, growth)"},
+      {problem:"Missing core role keywords like SEO, Google Analytics and CRM",fix:"Mirror the exact terms from 2–3 target job posts"},
+      {problem:"No dedicated Skills section for tools and platforms",fix:"Add a Skills block listing software, channels and methods"},
+      {problem:"Generic summary that never states a target title",fix:"Open with the exact role title you're applying for"},
+      {problem:"No LinkedIn or portfolio link in the header",fix:"Add a LinkedIn/portfolio URL beside your contact info"}],
+    keywordGaps:["SEO","Google Analytics","A/B testing","CRM","campaign ROI"]},
+  mid:{atsScore:73,detectedRole:"Software Engineer (Mid-level)",verdict:"Interview-ready, with gaps",
+    summary:"Clears most screeners and reads well to an LLM, but a few high-value keywords and metrics are missing that separate 'seen' from 'shortlisted'.",
+    categories:[
+      {name:"Parseability & formatting",score:84,note:"No tables or columns to confuse parsers"},
+      {name:"Section structure",score:78,note:"Clear sections; no top-of-page tech stack"},
+      {name:"Keyword & role match",score:69,note:"Good core coverage, missing senior signals"},
+      {name:"Impact & metrics",score:66,note:"Recent roles quantified, older ones vague"},
+      {name:"Contact & links",score:82,note:"GitHub present, portfolio link missing"}],
+    strengths:["Strong parseable formatting with no tables or multi-column tricks","Solid keyword coverage for core engineering skills","Consistent recent-first experience with clear dates","Most bullets already lead with strong action verbs","GitHub linked in the header for easy verification"],
+    issues:[
+      {problem:"Impact is under-quantified in earlier roles",fix:"Add latency, scale or user metrics to each project"},
+      {problem:"Missing high-signal terms: CI/CD, system design, cloud",fix:"Weave AWS/GCP, CI/CD and design into real bullets"},
+      {problem:"No tech-stack summary near the top for fast matching",fix:"Add a one-line stack summary under your name"},
+      {problem:"Summary lists responsibilities rather than wins",fix:"Lead with 2–3 measurable achievements instead"}],
+    keywordGaps:["CI/CD","system design","AWS/GCP","observability"]},
+  senior:{atsScore:89,detectedRole:"Senior Product Manager",verdict:"Strong — through the gate",
+    summary:"This reads like a top candidate to both keyword parsers and LLM screeners — clean structure, dense role match, and outcomes tied to numbers. The resume is doing its job.",
+    categories:[
+      {name:"Parseability & formatting",score:93,note:"Clean structure LLM screeners read easily"},
+      {name:"Section structure",score:88,note:"Logical order; a couple of dense blocks"},
+      {name:"Keyword & role match",score:86,note:"Dense, precise match for senior PM roles"},
+      {name:"Impact & metrics",score:85,note:"Nearly every bullet tied to a number"},
+      {name:"Contact & links",score:92,note:"LinkedIn and portfolio both present"}],
+    strengths:["Excellent parseability — clean structure LLM screeners read easily","Dense, precise role-keyword match for senior PM postings","Almost every bullet ties to a measurable business outcome","Complete contact block with LinkedIn and portfolio links","Clear seniority and scope signals in each role"],
+    issues:[
+      {problem:"Slightly long — older roles dilute the strong top",fix:"Trim to the 6–8 strongest, most recent wins"},
+      {problem:"Exact target title isn't mirrored in the header",fix:"Match the posting's title (e.g. 'Senior PM') up top"},
+      {problem:"Two roles use dense text blocks that reduce scannability",fix:"Break long bullets into one-line, outcome-first statements"}],
+    keywordGaps:[]}
+};
+function demoScan(kind){
+  pdfBase64='(demo)';
+  document.getElementById('fileName').textContent='✓ sample-'+kind+'-resume.pdf';
+  const email=document.getElementById('emailInput').value.trim();
+  const preset=JSON.parse(JSON.stringify(DEMO[kind]));preset._demo=true;
+  runScan(new Promise(r=>setTimeout(()=>r(preset),reduce?0:200)),email);
+}
+
+function bandColor(s){return s<70?'var(--oxblood)':s<85?'var(--gold)':'var(--navy)';}
+function bandWord(s){return s<70?'Needs work':s<85?'Interview-ready':'Strong';}
+function renderResult(d,email){
+  const score=Math.max(0,Math.min(100,Math.round(d.atsScore)));
+  const col=bandColor(score);
+  const arc=document.getElementById('gaugeArc'),num=document.getElementById('scoreNum'),vw=document.getElementById('verdictWord');
+  arc.style.stroke=col;vw.style.color=col;
+  const off=540-(score/100)*540;
+  if(reduce){num.textContent=score;arc.style.strokeDashoffset=off;}
+  else{arc.style.transition='stroke-dashoffset 1.3s cubic-bezier(.2,.7,.2,1)';requestAnimationFrame(()=>arc.style.strokeDashoffset=off);
+    let cur=0;const step=Math.max(1,Math.round(score/45));const t=setInterval(()=>{cur+=step;if(cur>=score){cur=score;clearInterval(t);}num.textContent=cur;},22);}
+  vw.textContent=d.verdict||bandWord(score);
+  document.getElementById('gaugeTag').textContent=score<70?'Below the 70 interview line':'Above the 70 interview line';
+
+  document.getElementById('detectedRole').textContent='Read as: '+(d.detectedRole||'General role');
+  document.getElementById('reportSummary').textContent=d.summary||'';
+  document.getElementById('emailedTo').textContent=d._demo?'Sample report — upload your PDF to get your own':d._emailed?('Full report sent to '+email):email?('We\'ll follow up at '+email):'Add an email to receive the full report';
+
+  const bars=document.getElementById('bars');bars.innerHTML='';
+  (d.categories||[]).forEach(c=>{const cs=Math.max(0,Math.min(100,Math.round(c.score)));
+    const note=c.note?`<small>${esc(c.note)}</small>`:'';
+    const row=document.createElement('div');row.className='bar-row';
+    row.innerHTML=`<div class="lab">${esc(c.name)}${note}</div><div class="bar-track"><div class="bar-fill" style="background:${bandColor(cs)}"></div></div><div class="pct">${cs}</div>`;
+    bars.appendChild(row);requestAnimationFrame(()=>setTimeout(()=>row.querySelector('.bar-fill').style.width=cs+'%',80));});
+
+  const str=document.getElementById('strengths');str.innerHTML='';
+  (d.strengths||[]).forEach(s=>{const li=document.createElement('li');li.textContent=s;str.appendChild(li);});
+  if(!(d.strengths||[]).length)str.innerHTML='<li>No standout strengths detected yet — the fixes on the right will build them.</li>';
+  document.getElementById('strengthCount').textContent=(d.strengths||[]).length||'';
+
+  const iss=document.getElementById('issues');iss.innerHTML='';
+  (d.issues||[]).forEach(it=>{const div=document.createElement('div');div.className='issue';
+    div.innerHTML=`<div class="p">${esc(it.problem||'')}</div><div class="f"><b>Fix</b>${esc(it.fix||'')}</div>`;
+    iss.appendChild(div);});
+  if(!(d.issues||[]).length)iss.innerHTML='<div class="issue" style="padding-left:0">Nothing major is holding this resume back — polish only.</div>';
+  document.getElementById('issueCount').textContent=(d.issues||[]).length||'';
+
+  const gaps=document.getElementById('keywordGaps');gaps.innerHTML='';
+  (d.keywordGaps||[]).forEach(k=>{const c=document.createElement('span');c.className='chip';c.textContent=k;gaps.appendChild(c);});
+  if(!(d.keywordGaps||[]).length)gaps.innerHTML='<span class="chip" style="background:rgba(20,38,74,.08);color:var(--navy);border-color:rgba(20,38,74,.18)">No major keyword gaps found ✓</span>';
+
+  document.getElementById('report').classList.add('show');
+  renderVerdictBlock(score);
+  setStep(4);
+  if(email)toast('Detailed report on its way to '+email);
+}
+
+function renderVerdictBlock(score){
+  const vb=document.getElementById('verdictBlock');
+  if(score<70){
+    vb.innerHTML=`<div class="cta-panel low">
+      <div><span class="pill" style="border-color:#e6cfcc;color:var(--oxblood)">Score below 70</span>
+      <h3 style="margin-top:12px">Your resume is getting filtered out.</h3>
+      <p>At this score, most AI screeners drop you before a recruiter looks. Commission a full rewrite and we'll rebuild it to clear the machine.</p></div>
+      <button class="btn btn-accent" style="white-space:nowrap" onclick="openBooking('Resume rewrite — $99 (scan: ${score}/100)')">Rewrite my resume · $99</button></div>`;
+  }else{
+    vb.innerHTML=`<div class="upsell-head">
+      <span class="pill" style="border-color:rgba(20,38,74,.2);color:var(--navy)">Score ${score}/100 · through the gate</span>
+      <h3 style="margin-top:12px">Now turn interviews into offers.</h3>
+      <p>Your resume clears the machine. These refine everything after it.</p></div>
+      <div class="upsell-grid">
+      <div class="up-card"><svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 01-7.7 5.7L5 17H3v-2l3.3-3.3A6 6 0 1116 8z" stroke="currentColor" stroke-width="1.6"/></svg>
+        <h4>LinkedIn revamp</h4><p>Get found by recruiters with a profile that mirrors your strong resume.</p>
+        <div class="price">$75</div><button class="btn btn-ghost" onclick="openBooking('LinkedIn Profile Revamp — $75 (scan: ${score}/100)')">Add this</button></div>
+      <div class="up-card"><svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H7l-3 3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <h4>Cover letter</h4><p>A role-specific letter that gives a strong resume its human hook.</p>
+        <div class="price">$40</div><button class="btn btn-ghost" onclick="openBooking('Cover Letter — $40 (scan: ${score}/100)')">Add this</button></div>
+      <div class="up-card"><svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 3a4 4 0 014 4v3a4 4 0 01-8 0V7a4 4 0 014-4zM5 11a7 7 0 0014 0M12 18v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <h4>Interview toolkit</h4><p>Frameworks and mock questions for AI-scored screens and live rounds.</p>
+        <div class="price">$30</div><button class="btn btn-ghost" onclick="openBooking('Interview Toolkit — $30 (scan: ${score}/100)')">Add this</button></div>
+      </div>`;
+  }
+  vb.classList.add('show');
+}
+
+let bookingCtx='';
+function openBooking(ctx){
+  bookingCtx=ctx||'';
+  document.getElementById('modalCtx').textContent=ctx?('Focus: '+ctx):'';
+  document.getElementById('modalForm').style.display='block';
+  document.getElementById('modalOk').style.display='none';
+  const pre=document.getElementById('emailInput').value.trim();if(pre)document.getElementById('bkEmail').value=pre;
+  document.getElementById('modal').classList.add('show');document.body.style.overflow='hidden';
+}
+function closeBooking(){document.getElementById('modal').classList.remove('show');document.body.style.overflow='';}
+async function submitBooking(){
+  const v=id=>document.getElementById(id).value.trim();
+  const name=v('bkName'),email=v('bkEmail'),phone=v('bkPhone'),date=v('bkDate'),time=v('bkTime'),goal=v('bkGoal');
+  if(!name||!email){toast('Please add your name and email.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){toast('Please enter a valid email.');return;}
+  const btn=document.getElementById('bkSubmit');btn.disabled=true;const orig=btn.textContent;btn.textContent='Sending…';
+  try{
+    const res=await fetch('/api/book',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name,email,phone,date,time,goal,service:bookingCtx,website:v('bkWebsite')})});
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok)throw new Error(data.error||'Request failed');
+    const slot=date?('a slot on '+date+' at '+time):('a '+time+' slot');
+    document.getElementById('modalForm').style.display='none';document.getElementById('modalOk').style.display='block';
+    document.getElementById('okMsg').textContent=`Thanks, ${name.split(' ')[0]}. We've received your request for ${slot}. `+
+      (data.confirmed?`A confirmation is on its way to ${email}.`:`We'll confirm by email at ${email} shortly.`);
+  }catch(err){
+    console.error(err);toast("Couldn't send your request — please try again.");
+  }finally{btn.disabled=false;btn.textContent=orig;}
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBooking();});
+
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+let toastTimer;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3600);}
+</script>
+</body>
+</html>
