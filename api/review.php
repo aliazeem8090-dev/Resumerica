@@ -38,7 +38,7 @@ $content = base64_encode(file_get_contents($file['tmp_name']));
 
 $notified = send_mail(
     NOTIFY_EMAIL,
-    "New CV review request — {$email}",
+    "New CV review request: {$email}",
     review_lead_html($email, $roles, $salary, $notes, $safeName),
     $email,
     [['filename' => $safeName, 'content' => $content]]
@@ -52,8 +52,8 @@ $confirmed = false;
 if (defined('FROM_EMAIL') && FROM_EMAIL !== '' && defined('RESEND_API_KEY') && RESEND_API_KEY !== '') {
     $html = "<p>Hi there,</p>"
         . "<p>Thank you for submitting your request. Your CV is being reviewed by our professionals and we will get back to you with a report within 24 hours.</p>"
-        . "<p>— The Resumerica team</p>";
-    $confirmed = send_mail($email, 'We received your CV — Resumerica', $html, NOTIFY_EMAIL);
+        . "<p>The Resumerica team</p>";
+    $confirmed = send_mail($email, 'We received your CV: Resumerica', $html, NOTIFY_EMAIL);
 }
 
 json_out(['ok' => true, 'confirmed' => $confirmed]);

@@ -10,7 +10,7 @@ ob_start();
 if (!file_exists(__DIR__ . '/config.php')) {
     http_response_code(500);
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Server not configured — copy config.example.php to config.php and fill it in.']);
+    echo json_encode(['error' => 'Server not configured. Copy config.example.php to config.php and fill it in.']);
     exit;
 }
 require_once __DIR__ . '/config.php';
@@ -53,7 +53,7 @@ function rate_limit($bucket, $maxPerMinute = 8) {
     $window = 60;
 
     $fp = @fopen($file, 'c+');
-    if (!$fp) return; // fail open — don't block real users if disk isn't writable
+    if (!$fp) return; // fail open, don't block real users if disk isn't writable
     flock($fp, LOCK_EX);
     $raw = stream_get_contents($fp);
     $data = $raw ? json_decode($raw, true) : null;
@@ -68,7 +68,7 @@ function rate_limit($bucket, $maxPerMinute = 8) {
     fclose($fp);
 
     if ($data['count'] > $maxPerMinute) {
-        json_out(['error' => 'Too many requests — please wait a minute.'], 429);
+        json_out(['error' => 'Too many requests. Please wait a minute.'], 429);
     }
 }
 

@@ -3,13 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Insights — Resumerica</title>
-<meta name="description" content="Notes on AI resume screening, ATS systems, and the 2026 hiring market — from the Resumerica team.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Resumerica Insights</title>
+<meta name="description" content="Notes on AI resume screening, ATS systems, and the 2026 hiring market, from the Resumerica team.">
 <style>
   :root{
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --bg:#F5F0E4; --bg-2:#EFE9DA; --surface:#FCFAF3; --surface-2:#F1EBDC; --surface-3:#E7E0CE;
     --ink:#14264A; --ink-2:#3A4869; --muted:#6A7286; --faint:#A69F8E;
     --line:#E4DCC7; --line-2:#D5CBB1;
@@ -19,12 +17,12 @@
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.65;font-size:16px}
-  h1,h2{margin:0;font-family:"Fraunces",Georgia,serif;font-weight:400;letter-spacing:-.02em;line-height:1.1}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.65;font-size:16px}
+  h1,h2{margin:0;font-family:var(--font);font-weight:400;letter-spacing:-.02em;line-height:1.1}
   h3{margin:0;font-weight:600;letter-spacing:-.01em;line-height:1.25}
   p{margin:0}
   a{color:inherit;text-decoration:none}
-  .mono{font-family:"JetBrains Mono",monospace}
+  .mono{font-family:var(--font)}
   .wrap{max-width:920px;margin:0 auto;padding:0 28px}
   .kick{display:inline-flex;align-items:center;gap:12px;font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--oxblood)}
   .flagrule{display:inline-flex;flex-direction:column;gap:2px;width:26px}
@@ -41,7 +39,7 @@
   .nav-in{max-width:1120px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:72px}
   .brand{display:flex;align-items:center;gap:11px;color:var(--navy)}
   .brand svg{height:30px;width:auto;flex:none}
-  .brand b{font-family:"Fraunces",serif;font-weight:600;font-size:22px;letter-spacing:.01em;color:var(--navy)}
+  .brand b{font-family:var(--font);font-weight:600;font-size:22px;letter-spacing:.01em;color:var(--navy)}
   .nav-links{display:flex;align-items:center;gap:30px}
   .nav-links a{color:var(--muted);font-weight:500;font-size:14px;transition:color .15s}
   .nav-links a:hover,.nav-links a.on{color:var(--navy)}
@@ -54,7 +52,7 @@
   .posts{padding:56px 0 90px;display:grid;gap:0}
   article.post{padding:48px 0;border-bottom:1px solid var(--line)}
   article.post:first-child{padding-top:0}
-  .post .meta{display:flex;gap:14px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--faint);margin-bottom:14px}
+  .post .meta{display:flex;gap:14px;align-items:center;font-family:var(--font);font-size:12px;color:var(--faint);margin-bottom:14px}
   .post .meta .tag{color:var(--oxblood);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
   .post h2{font-size:clamp(24px,3vw,32px);color:var(--navy)}
   .post .dek{color:var(--ink-2);font-size:16.5px;margin-top:14px;max-width:720px}
@@ -63,7 +61,7 @@
   .post .body ul{margin:0;padding-left:22px;display:grid;gap:8px}
   .post .cta{margin-top:24px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
   .post .cta a.inline{color:var(--oxblood);font-weight:600;font-size:14px}
-  .post .src{margin-top:18px;font-size:11.5px;color:var(--faint);font-family:"JetBrains Mono",monospace}
+  .post .src{margin-top:18px;font-size:11.5px;color:var(--faint);font-family:var(--font)}
 
   .band{background:var(--navy);border-radius:20px;padding:52px;text-align:center;margin:0 0 90px}
   .band .kick{color:#D9A9AE}
@@ -101,7 +99,7 @@
   <div class="wrap">
     <span class="kick"><span class="flagrule"><i></i><i></i><i></i></span> Insights</span>
     <h1>What the AI hiring machine is actually doing.</h1>
-    <p>Short, specific notes on ATS systems, LLM screening and the 2026 job market — so you know exactly what you're up against before you hit apply.</p>
+    <p>Short, specific notes on ATS systems, LLM screening and the 2026 job market, so you know exactly what you're up against before you hit apply.</p>
   </div>
 </section>
 
@@ -113,13 +111,13 @@
       <h2>Why your resume gets rejected in under a second</h2>
       <p class="dek">Modern hiring platforms don't wait for a human to glance at your file. Here's the actual sequence a resume goes through before anyone decides you're worth an interview.</p>
       <div class="body">
-        <p>Most job seekers picture an "ATS" as a simple keyword filter — a robot skimming for buzzwords. That's outdated. In 2026, a resume typically passes through three or four automated layers before a person ever opens it: a parser that extracts your text and structure, a keyword/skills matcher scored against the job requisition, and increasingly an LLM-based screener that reads the whole document and writes a plain-language summary and fit score for the recruiter.</p>
+        <p>Most job seekers picture an "ATS" as a simple keyword filter: a robot skimming for buzzwords. That's outdated. In 2026, a resume typically passes through three or four automated layers before a person ever opens it: a parser that extracts your text and structure, a keyword/skills matcher scored against the job requisition, and increasingly an LLM-based screener that reads the whole document and writes a plain-language summary and fit score for the recruiter.</p>
         <p><b>The parser matters most, and it's the easiest to get wrong.</b> Multi-column layouts, text boxes, tables and graphics can scramble the order your experience is read in, or drop it entirely. A resume that looks polished in a PDF viewer can still land on a recruiter's desk as garbled text.</p>
         <p>Three things consistently separate resumes that clear this gate from ones that don't:</p>
         <ul>
           <li>Single-column, standard section headings (Experience, Education, Skills) that any parser recognizes</li>
           <li>Language that mirrors the target job posting, not just your internal job title</li>
-          <li>Complete, plain-text contact information — no contact details locked inside a header/footer or image</li>
+          <li>Complete, plain-text contact information, with no contact details locked inside a header/footer or image</li>
         </ul>
         <div class="cta"><a class="btn btn-accent" href="index.html#review">Get your free CV review →</a><a class="inline" href="index.html#how">See how it works</a></div>
       </div>
@@ -128,11 +126,11 @@
 
     <article class="post">
       <div class="meta"><span class="tag">Hiring market</span><span>·</span><span>5 min read</span></div>
-      <h2>More job postings, fewer hires — what changed</h2>
-      <p class="dek">The U.S. hire rate fell to 3.1% in early 2026, a five-year low, even with millions of open roles. It's not that companies stopped hiring — it's that the funnel got longer.</p>
+      <h2>More job postings, fewer hires: what changed</h2>
+      <p class="dek">The U.S. hire rate fell to 3.1% in early 2026, a five-year low, even with millions of open roles. It's not that companies stopped hiring. It's that the funnel got longer.</p>
       <div class="body">
-        <p>Two forces are compounding. First, generative AI made applying nearly free — candidates now submit to dozens of roles in the time it used to take to tailor one resume, which means popular listings can draw 50% more applications than in prior years. Volume went up; genuine fit did not.</p>
-        <p>Second, employers responded by adding more automated filtering rather than more recruiters. The result is a narrower, more mechanical first gate for everyone — including strong candidates who simply didn't format or word their resume the way the new systems expect.</p>
+        <p>Two forces are compounding. First, generative AI made applying nearly free. Candidates now submit to dozens of roles in the time it used to take to tailor one resume, which means popular listings can draw 50% more applications than in prior years. Volume went up; genuine fit did not.</p>
+        <p>Second, employers responded by adding more automated filtering rather than more recruiters. The result is a narrower, more mechanical first gate for everyone, including strong candidates who simply didn't format or word their resume the way the new systems expect.</p>
         <p>The practical takeaway: in a tighter market, a resume that's precisely tailored to one role will consistently outperform ten generic ones sent to ten roles.</p>
       </div>
       <div class="src">Sources: BLS JOLTS (Feb 2026), LinkedIn / The Quest Organization, BambooHR</div>
@@ -141,9 +139,9 @@
     <article class="post">
       <div class="meta"><span class="tag">LLM screening</span><span>·</span><span>6 min read</span></div>
       <h2>Keyword stuffing doesn't work anymore. Here's why.</h2>
-      <p class="dek">Workday, Greenhouse and Ashby have all shipped LLM-based screening that reads a resume more like a person than a keyword scanner — which changes what "optimizing" a resume actually means.</p>
+      <p class="dek">Workday, Greenhouse and Ashby have all shipped LLM-based screening that reads a resume more like a person than a keyword scanner, which changes what "optimizing" a resume actually means.</p>
       <div class="body">
-        <p>The old advice — repeat the job title fifteen times, paste the skills list verbatim — was built for a purely lexical matcher. LLM screeners instead summarize your experience, judge whether your accomplishments plausibly match the role's scope, and draft recruiter-facing notes. Stuffed, repetitive text reads as noise to a model the same way it reads as noise to a human, and can actively hurt your summary.</p>
+        <p>The old advice (repeat the job title fifteen times, paste the skills list verbatim) was built for a purely lexical matcher. LLM screeners instead summarize your experience, judge whether your accomplishments plausibly match the role's scope, and draft recruiter-facing notes. Stuffed, repetitive text reads as noise to a model the same way it reads as noise to a human, and can actively hurt your summary.</p>
         <p>What still works, and works better under LLM review, is specificity: real numbers, real scope, real outcomes. "Managed a team" tells a screener nothing. "Led a 6-person team to cut onboarding time 34% in two quarters" gives both a keyword match and a judgment signal a model can act on.</p>
         <div class="cta"><a class="btn btn-accent" href="index.html#pricing">See resume rewrite pricing →</a></div>
       </div>
@@ -153,10 +151,10 @@
     <article class="post">
       <div class="meta"><span class="tag">Strategy</span><span>·</span><span>4 min read</span></div>
       <h2>Why a number isn't the whole story</h2>
-      <p class="dek">Plenty of free tools will hand you a 0–100 "ATS score." Here's why that number alone can't tell you what to actually do about it — and what can.</p>
+      <p class="dek">Plenty of free tools will hand you a 0–100 "ATS score." Here's why that number alone can't tell you what to actually do about it, and what can.</p>
       <div class="body">
-        <p>A raw score can flag surface issues — thin keyword coverage, a parsing risk, unquantified bullets — but it can't tell whether your experience actually matches the seniority and scope of the role you're targeting, or whether the story your resume tells makes sense for the salary you're asking for. That judgment call needs a person who's read hundreds of resumes against real job postings, not a fixed rubric.</p>
-        <p>That's the gap our free CV review fills: you tell us the specific role and salary you're aiming for, and a strategist reads your resume against that target — not a generic average. You get a written report on what's already working, what's likely hurting your chances, and the exact changes to make.</p>
+        <p>A raw score can flag surface issues: thin keyword coverage, a parsing risk, unquantified bullets. But it can't tell whether your experience actually matches the seniority and scope of the role you're targeting, or whether the story your resume tells makes sense for the salary you're asking for. That judgment call needs a person who's read hundreds of resumes against real job postings, not a fixed rubric.</p>
+        <p>That's the gap our free CV review fills: you tell us the specific role and salary you're aiming for, and a strategist reads your resume against that target, not a generic average. You get a written report on what's already working, what's likely hurting your chances, and the exact changes to make.</p>
         <div class="cta"><a class="btn btn-accent" href="index.html#review">Get your free CV review →</a></div>
       </div>
     </article>

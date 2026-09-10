@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Resumerica — Your American Dream. One Resume Away.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Resumerica: Your American Dream. One Resume Away.</title>
 <style>
   :root{
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --bg:#F5F0E4; --bg-2:#EFE9DA; --surface:#FCFAF3; --surface-2:#F1EBDC; --surface-3:#E7E0CE;
     --ink:#14264A; --ink-2:#3A4869; --muted:#6A7286; --faint:#A69F8E;
     --line:#E4DCC7; --line-2:#D5CBB1;
@@ -18,14 +16,14 @@
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.65;font-size:16px;overflow-x:hidden}
-  h1,h2{margin:0;font-family:"Fraunces",Georgia,serif;font-weight:400;letter-spacing:-.02em;line-height:1.08}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.65;font-size:16px;overflow-x:hidden}
+  h1,h2{margin:0;font-family:var(--font);font-weight:400;letter-spacing:-.02em;line-height:1.08}
   h3,h4{margin:0;font-weight:600;letter-spacing:-.01em;line-height:1.2}
   p{margin:0}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1120px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
-  em{font-style:italic;color:var(--oxblood)}
-  .mono{font-family:"JetBrains Mono",monospace}
+  em{font-style:normal;color:var(--oxblood)}
+  .mono{font-family:var(--font)}
   button{font-family:inherit;cursor:pointer;border:none}
   .kick{display:inline-flex;align-items:center;gap:12px;font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--oxblood)}
   .flagrule{display:inline-flex;flex-direction:column;gap:2px;width:26px}
@@ -51,7 +49,7 @@
   .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
   .brand{display:flex;align-items:center;gap:11px;color:var(--navy)}
   .brand svg{height:30px;width:auto;flex:none}
-  .brand b{font-family:"Fraunces",serif;font-weight:600;font-size:22px;letter-spacing:.01em;color:var(--navy)}
+  .brand b{font-family:var(--font);font-weight:600;font-size:22px;letter-spacing:.01em;color:var(--navy)}
   .nav-links{display:flex;align-items:center;gap:30px}
   .nav-links a{color:var(--muted);font-weight:500;font-size:14px;transition:color .15s}
   .nav-links a:hover{color:var(--navy)}
@@ -87,7 +85,7 @@
   .stats-in{display:flex;flex-wrap:wrap}
   .stats-in div{flex:1;min-width:180px;padding:28px 28px 28px 0;margin-right:28px;border-right:1px solid var(--line)}
   .stats-in div:last-child{border:none;margin:0}
-  .stats .n{font-family:"Fraunces",serif;font-weight:400;font-size:30px;line-height:1;color:var(--navy)}
+  .stats .n{font-family:var(--font);font-weight:400;font-size:30px;line-height:1;color:var(--navy)}
   .stats .l{font-size:12.5px;color:var(--muted);margin-top:8px;max-width:200px}
 
   section{padding:90px 0;position:relative}
@@ -99,7 +97,7 @@
   .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
   .hcard{background:var(--surface);padding:28px 24px;transition:.2s}
   .hcard:hover{background:#fff}
-  .hcard .no{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--oxblood)}
+  .hcard .no{font-family:var(--font);font-size:12px;color:var(--oxblood)}
   .hcard .ic{width:26px;height:26px;margin:16px 0 14px;color:var(--navy)}
   .hcard h3{font-size:16.5px;margin-bottom:8px;color:var(--navy)}
   .hcard p{color:var(--muted);font-size:13.5px}
@@ -114,34 +112,34 @@
   .case{background:var(--surface);padding:30px;transition:.2s;position:relative}
   .case:hover{background:#fff}
   .case .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
-  .case .stat{font-family:"Fraunces",serif;font-weight:400;font-size:46px;line-height:1;margin:14px 0 8px;color:var(--navy);letter-spacing:-.02em}
+  .case .stat{font-family:var(--font);font-weight:400;font-size:46px;line-height:1;margin:14px 0 8px;color:var(--navy);letter-spacing:-.02em}
   .case .stat span{font-size:26px;color:var(--oxblood)}
-  .case h3{font-family:"Fraunces",serif;font-weight:400;font-size:21px;margin:8px 0 10px;color:var(--navy)}
+  .case h3{font-family:var(--font);font-weight:400;font-size:21px;margin:8px 0 10px;color:var(--navy)}
   .case p{color:var(--ink-2);font-size:14px}
-  .case .src{margin-top:16px;font-size:11.5px;color:var(--faint);font-family:"JetBrains Mono",monospace}
-  .case .takeaway{max-height:0;opacity:0;overflow:hidden;transition:.3s ease;font-size:13.5px;color:var(--navy);border-left:2px solid var(--oxblood);padding:0 0 0 14px;font-style:italic;font-family:"Fraunces",serif}
+  .case .src{margin-top:16px;font-size:11.5px;color:var(--faint);font-family:var(--font)}
+  .case .takeaway{max-height:0;opacity:0;overflow:hidden;transition:.3s ease;font-size:13.5px;color:var(--navy);border-left:2px solid var(--oxblood);padding:0 0 0 14px;font-family:var(--font)}
   .case:hover .takeaway,.case:focus-within .takeaway{max-height:130px;opacity:1;margin-top:16px;padding:4px 0 4px 14px}
-  .case .takeaway b{color:var(--oxblood);font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:12px}
+  .case .takeaway b{color:var(--oxblood);font-style:normal;font-family:var(--font);font-weight:600;font-size:12px}
 
   /* TESTIMONIALS */
   .testimonials{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .tmasonry{columns:3;column-gap:16px}
   .tcard{break-inside:avoid;margin-bottom:16px;border:1px solid var(--line);border-radius:14px;padding:24px;background:var(--surface)}
-  .tcard .q{font-family:"Fraunces",serif;font-weight:400;font-size:15.5px;line-height:1.55;color:var(--navy)}
+  .tcard .q{font-family:var(--font);font-weight:400;font-size:15.5px;line-height:1.55;color:var(--navy)}
   .tcard .who{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
-  .tcard .av{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#FCFAF3;display:grid;place-items:center;font-family:"Fraunces",serif;font-size:15px;flex:none}
+  .tcard .av{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#FCFAF3;display:grid;place-items:center;font-family:var(--font);font-size:15px;flex:none}
   .tcard:nth-child(3n+2) .av{background:var(--oxblood)}
   .tcard .who b{font-weight:600;font-size:13px;color:var(--navy);display:block}
   .tcard .who span{font-size:12px;color:var(--muted)}
 
-  /* PRICING — à la carte menu */
+  /* PRICING: a la carte menu */
   .menu{border-top:1px solid var(--line-2)}
   .mitem{display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;padding:22px 4px;border-bottom:1px solid var(--line);transition:.15s;cursor:pointer}
   .mitem:hover{background:var(--surface);padding-left:14px;padding-right:14px}
-  .mitem .mname{font-family:"Fraunces",serif;font-size:20px;color:var(--navy);display:flex;align-items:center;gap:12px}
-  .mitem .mtag{font-family:"Inter",sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#FCFAF3;background:var(--oxblood);padding:3px 8px;border-radius:5px;font-weight:600}
+  .mitem .mname{font-family:var(--font);font-size:20px;color:var(--navy);display:flex;align-items:center;gap:12px}
+  .mitem .mtag{font-family:var(--font);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#FCFAF3;background:var(--oxblood);padding:3px 8px;border-radius:5px;font-weight:600}
   .mitem .mdesc{color:var(--muted);font-size:13.5px;margin-top:4px}
-  .mitem .mprice{font-family:"Fraunces",serif;font-size:26px;color:var(--navy);white-space:nowrap}
+  .mitem .mprice{font-family:var(--font);font-size:26px;color:var(--navy);white-space:nowrap}
   .mitem .mbook{font-size:13px;font-weight:600;color:var(--oxblood);white-space:nowrap}
   .menu-note{margin-top:22px;font-size:13.5px;color:var(--muted)}
   .menu-note b{color:var(--navy);font-weight:600}
@@ -149,9 +147,9 @@
   /* FAQ */
   .faq{max-width:820px}
   .faq details{border-bottom:1px solid var(--line);padding:6px 0}
-  .faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;font-size:17px;color:var(--navy);font-family:"Fraunces",serif;font-weight:400}
+  .faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;font-size:17px;color:var(--navy);font-family:var(--font);font-weight:400}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";position:absolute;right:6px;top:17px;font-size:22px;color:var(--oxblood);transition:transform .2s;font-family:"Inter",sans-serif;font-weight:300}
+  .faq summary::after{content:"+";position:absolute;right:6px;top:17px;font-size:22px;color:var(--oxblood);transition:transform .2s;font-family:var(--font);font-weight:300}
   .faq details[open] summary::after{transform:rotate(45deg)}
   .faq .anc{color:var(--muted);font-size:14.5px;padding:0 40px 22px 0;line-height:1.6}
 
@@ -180,7 +178,7 @@
   .modal-card{position:relative;background:var(--surface);border:1px solid var(--line-2);border-radius:16px;max-width:500px;width:100%;padding:34px;box-shadow:var(--shadow);max-height:92vh;overflow:auto;animation:pop .28s ease}
   .modal-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--oxblood),var(--navy))}
   @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
-  .modal-card h3{font-family:"Fraunces",serif;font-size:24px;font-weight:400;color:var(--navy);margin-top:12px}
+  .modal-card h3{font-family:var(--font);font-size:24px;font-weight:400;color:var(--navy);margin-top:12px}
   .modal-card .ctx{color:var(--oxblood);font-weight:600;font-size:13px;margin-top:6px}
   .field{margin-top:15px}
   .field label{display:block;font-size:12.5px;font-weight:600;margin-bottom:6px;color:var(--ink-2)}
@@ -190,7 +188,7 @@
   .close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line-2);font-size:17px;color:var(--muted)}
   .modal-ok{text-align:center;padding:14px 0}
   .modal-ok .badge{width:60px;height:60px;margin:0 auto 14px;color:var(--navy)}
-  .modal-ok h3{font-family:"Fraunces",serif}
+  .modal-ok h3{font-family:var(--font)}
 
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(140%);background:var(--navy);color:#FCFAF3;padding:13px 20px;border-radius:11px;z-index:120;box-shadow:var(--shadow);font-size:14px;transition:transform .3s ease;max-width:90vw}
   .toast.show{transform:translateX(-50%) translateY(0)}
@@ -244,7 +242,7 @@
     <div class="hero-anim">
       <span class="kick"><span class="flagrule"><i></i><i></i><i></i></span> Your American dream · one resume away</span>
       <h1>Beat the machine that reads your resume in <em>under a second.</em></h1>
-      <p class="lede">Before a recruiter ever sees it, an AI screener scores and ranks your resume. Our resume strategists review yours by hand against your target role — and rewrite it to move you up the list.</p>
+      <p class="lede">Before a recruiter ever sees it, an AI screener scores and ranks your resume. Our resume strategists review yours by hand against your target role, and rewrite it to move you up the list.</p>
       <div class="hero-cta">
         <a href="#review" class="btn btn-accent">Get a free CV review
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -259,7 +257,7 @@
     <div class="prod">
       <div class="ptop"><div class="ptag"><span class="live"></span> Free CV review</div></div>
       <ul class="prod-list">
-        <li>Reviewed by a resume strategist — not a bot</li>
+        <li>Reviewed by a resume strategist, not a bot</li>
         <li>Matched to your targeted role and salary goal</li>
         <li>Full written report in your inbox within 24 hours</li>
       </ul>
@@ -274,7 +272,7 @@
     <div><div class="n">~0.5%</div><div class="l">of job-board applicants get hired</div></div>
     <div><div class="n"><span class="count" data-to="50" data-prefix="+" data-suffix="%">+0%</span></div><div class="l">more applicants per role vs. prior years</div></div>
     <div><div class="n">&lt;1s</div><div class="l">for an AI to reject a resume</div></div>
-    <div><div class="n"><span class="count" data-to="3.1" data-dec="1" data-suffix="%">0.0%</span></div><div class="l">U.S. hire rate — a five-year low</div></div>
+    <div><div class="n"><span class="count" data-to="3.1" data-dec="1" data-suffix="%">0.0%</span></div><div class="l">U.S. hire rate, a five-year low</div></div>
   </div>
 </section>
 
@@ -284,7 +282,7 @@
     <div class="sec-head reveal">
       <span class="kick">The method</span>
       <h2>Four steps, quietly precise.</h2>
-      <p>A clear path from a PDF to the callback — reviewed by hand against the role you actually want.</p>
+      <p>A clear path from a PDF to the callback, reviewed by hand against the role you actually want.</p>
     </div>
     <div class="how-grid reveal">
       <div class="hcard"><div class="no">01</div>
@@ -292,10 +290,10 @@
         <h3>Send us your resume</h3><p>Drop your CV in PDF or Word, and tell us the role and salary you're targeting.</p></div>
       <div class="hcard"><div class="no">02</div>
         <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <h3>A strategist reviews it</h3><p>A person — not a bot — reads it against how 2026 hiring platforms actually screen.</p></div>
+        <h3>A strategist reviews it</h3><p>A person, not a bot, reads it against how 2026 hiring platforms actually screen.</p></div>
       <div class="hcard"><div class="no">03</div>
         <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 018-8 8 8 0 018 8M8 21h8M12 13l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <h3>Get your report</h3><p>A written breakdown of what's working, what's not, and exactly what to fix — within 24 hours.</p></div>
+        <h3>Get your report</h3><p>A written breakdown of what's working, what's not, and exactly what to fix, all within 24 hours.</p></div>
       <div class="hcard"><div class="no">04</div>
         <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Fix it & win</h3><p>Ready to rebuild? We turn the report into a full rewrite that gets you interviews.</p></div>
@@ -324,39 +322,39 @@
     <div class="sec-head reveal">
       <span class="kick">Field report</span>
       <h2>The job search didn't get harder. It got re-engineered.</h2>
-      <p>Four findings on why more openings are producing fewer hires — and how hiring teams now use AI to decide who's worth a human's time. Hover any card for what it means for you.</p>
+      <p>Four findings on why more openings are producing fewer hires, and how hiring teams now use AI to decide who's worth a human's time. Hover any card for what it means for you.</p>
     </div>
     <div class="case-grid reveal">
       <article class="case" tabindex="0">
         <div class="kicker">The application flood</div>
         <div class="stat"><span class="count" data-to="50" data-prefix="+">+0</span><span>%</span></div>
-        <h3>AI made applying free — so everyone applies to everything</h3>
-        <p>Popular roles now draw up to 50% more applications than in prior years, largely from candidates using AI to submit in bulk. More volume, not better matches — which is exactly why screeners tightened up.</p>
-        <div class="takeaway"><b>Your edge —</b> a tailored, keyword-matched resume stands out in a pile of AI-generated sameness.</div>
+        <h3>AI made applying free, so everyone applies to everything</h3>
+        <p>Popular roles now draw up to 50% more applications than in prior years, largely from candidates using AI to submit in bulk. More volume, not better matches, which is exactly why screeners tightened up.</p>
+        <div class="takeaway"><b>Your edge:</b> a tailored, keyword-matched resume stands out in a pile of AI-generated sameness.</div>
         <div class="src">LinkedIn / The Quest Organization · 2026</div>
       </article>
       <article class="case" tabindex="0">
         <div class="kicker">The one-second gate</div>
         <div class="stat">&lt;1<span>s</span></div>
         <h3>Rejected before a human ever opens the file</h3>
-        <p>A recruiter might spend minutes on a resume — but an AI layer can decline it in under a second if it isn't optimized. ATS is now just the first of three or four AI systems scoring you before anyone human weighs in.</p>
-        <div class="takeaway"><b>Your edge —</b> clean, parseable formatting clears the first gate so a person actually sees you.</div>
+        <p>A recruiter might spend minutes on a resume, but an AI layer can decline it in under a second if it isn't optimized. ATS is now just the first of three or four AI systems scoring you before anyone human weighs in.</p>
+        <div class="takeaway"><b>Your edge:</b> clean, parseable formatting clears the first gate so a person actually sees you.</div>
         <div class="src">2026 AI-screening guides / PassTheScan</div>
       </article>
       <article class="case" tabindex="0">
         <div class="kicker">New tech on the other side</div>
         <div class="stat">LLMs</div>
         <h3>Workday, Greenhouse & Ashby now read like a person</h3>
-        <p>Major platforms have shipped LLM screening that summarizes each resume in plain language, scores it against the role, and drafts recruiter notes. Old keyword-stuffing tricks no longer clear the bar — meaning matters now.</p>
-        <div class="takeaway"><b>Your edge —</b> real, quantified accomplishments beat keyword stuffing when an LLM is reading.</div>
+        <p>Major platforms have shipped LLM screening that summarizes each resume in plain language, scores it against the role, and drafts recruiter notes. Old keyword-stuffing tricks no longer clear the bar. Meaning matters now.</p>
+        <div class="takeaway"><b>Your edge:</b> real, quantified accomplishments beat keyword stuffing when an LLM is reading.</div>
         <div class="src">ATS Verification · June 2026</div>
       </article>
       <article class="case" tabindex="0">
         <div class="kicker">More openings, fewer hires</div>
         <div class="stat"><span class="count" data-to="3.1" data-dec="1">0.0</span><span>%</span></div>
         <h3>The hire rate hit a five-year low</h3>
-        <p>Early 2026 saw the U.S. hires rate fall to 3.1% — the lowest since 2020 — even with 6.9 million open roles. Companies are filling more roles internally, so external applicants face a narrower door.</p>
-        <div class="takeaway"><b>Your edge —</b> in a tight market every callback counts, and small resume fixes move the odds.</div>
+        <p>Early 2026 saw the U.S. hires rate fall to 3.1%, the lowest since 2020, even with 6.9 million open roles. Companies are filling more roles internally, so external applicants face a narrower door.</p>
+        <div class="takeaway"><b>Your edge:</b> in a tight market every callback counts, and small resume fixes move the odds.</div>
         <div class="src">BLS JOLTS (Feb 2026) / BambooHR</div>
       </article>
     </div>
@@ -377,9 +375,9 @@
       <div class="tcard"><div class="q">"My previous CV looked good but wasn't getting through ATS systems. The new version was much more focused, keyword-optimized, and aligned with the roles I was targeting. I started receiving interview calls almost immediately."</div><div class="who"><div class="av">A</div><div><b>Ahmed S.</b><span>Software Engineer</span></div></div></div>
       <div class="tcard"><div class="q">"I wanted to apply for international positions but my CV wasn't competitive enough. The new CV presented my experience in a much more global and professional format. It made a huge difference to how I approached my job search."</div><div class="who"><div class="av">J</div><div><b>James T.</b><span>IT Professional</span></div></div></div>
       <div class="tcard"><div class="q">"Professional, strategic, and far better than anything I could have written myself. My experience finally looked as strong on paper as it actually was."</div><div class="who"><div class="av">E</div><div><b>Emily R.</b><span>Finance Professional</span></div></div></div>
-      <div class="tcard"><div class="q">"I didn't just receive a CV — I received a complete personal-branding upgrade. My CV and LinkedIn profile now tell the same professional story, and recruiters are finally noticing me."</div><div class="who"><div class="av">O</div><div><b>Olivia M.</b><span>HR Specialist</span></div></div></div>
+      <div class="tcard"><div class="q">"I didn't just receive a CV. I received a complete personal-branding upgrade. My CV and LinkedIn profile now tell the same professional story, and recruiters are finally noticing me."</div><div class="who"><div class="av">O</div><div><b>Olivia M.</b><span>HR Specialist</span></div></div></div>
       <div class="tcard"><div class="q">"As a fresh graduate, I thought I had nothing impressive to put on my CV. The writer helped turn my education, projects, internships, and skills into a CV that actually made me competitive."</div><div class="who"><div class="av">H</div><div><b>Hassan A.</b><span>Recent Graduate</span></div></div></div>
-      <div class="tcard"><div class="q">"They didn't just rewrite my CV — they changed the way I positioned myself in the job market. Every section had a purpose, my achievements were quantified, and the entire document felt tailored to the roles I was targeting. One of the best investments I've made in my career."</div><div class="who"><div class="av">J</div><div><b>John J.</b><span>Senior Professional</span></div></div></div>
+      <div class="tcard"><div class="q">"They didn't just rewrite my CV. They changed the way I positioned myself in the job market. Every section had a purpose, my achievements were quantified, and the entire document felt tailored to the roles I was targeting. One of the best investments I've made in my career."</div><div class="who"><div class="av">J</div><div><b>John J.</b><span>Senior Professional</span></div></div></div>
     </div>
   </div>
 </section>
@@ -390,30 +388,30 @@
     <div class="sec-head reveal">
       <span class="kick">Services &amp; pricing</span>
       <h2>Commission one. Or build the whole story.</h2>
-      <p>Every engagement can start with your free CV review. From there, choose exactly what you need — à la carte, no packages you don't want.</p>
+      <p>Every engagement can start with your free CV review. From there, choose exactly what you need: à la carte, no packages you don't want.</p>
     </div>
     <div class="menu reveal">
-      <div class="mitem" onclick="openBooking('Resume — $99')">
+      <div class="mitem" onclick="openBooking('Resume · $99')">
         <div><div class="mname">Resume <span class="mtag">Most requested</span></div><div class="mdesc">ATS-optimized, role-targeted, rewritten by hand to clear the machine.</div></div>
         <div class="mprice">$99</div><div class="mbook">Book →</div>
       </div>
-      <div class="mitem" onclick="openBooking('LinkedIn Profile Revamp — $75')">
+      <div class="mitem" onclick="openBooking('LinkedIn Profile Revamp · $75')">
         <div><div class="mname">LinkedIn Profile Revamp</div><div class="mdesc">Headline to About, tuned so recruiters find you and stay.</div></div>
         <div class="mprice">$75</div><div class="mbook">Book →</div>
       </div>
-      <div class="mitem" onclick="openBooking('Career Biography — $50')">
+      <div class="mitem" onclick="openBooking('Career Biography · $50')">
         <div><div class="mname">Career Biography</div><div class="mdesc">A polished professional bio for profiles, bids and speaking.</div></div>
         <div class="mprice">$50</div><div class="mbook">Book →</div>
       </div>
-      <div class="mitem" onclick="openBooking('Cover Letter — $40')">
+      <div class="mitem" onclick="openBooking('Cover Letter · $40')">
         <div><div class="mname">Cover Letter</div><div class="mdesc">A role-specific letter that passes AI reads and sounds like you.</div></div>
         <div class="mprice">$40</div><div class="mbook">Book →</div>
       </div>
-      <div class="mitem" onclick="openBooking('Interview Toolkit — $30')">
+      <div class="mitem" onclick="openBooking('Interview Toolkit · $30')">
         <div><div class="mname">Interview Toolkit</div><div class="mdesc">Frameworks and mock questions for AI-scored and live rounds.</div></div>
         <div class="mprice">$30</div><div class="mbook">Book →</div>
       </div>
-      <div class="mitem" onclick="openBooking('Follow-up / Thank-you Letter — $25')">
+      <div class="mitem" onclick="openBooking('Follow-up / Thank-you Letter · $25')">
         <div><div class="mname">Follow-up / Thank-you Letter</div><div class="mdesc">The note that keeps you top of mind after the interview.</div></div>
         <div class="mprice">$25</div><div class="mbook">Book →</div>
       </div>
@@ -430,11 +428,11 @@
       <h2>Answered plainly.</h2>
     </div>
     <div class="faq reveal">
-      <details open><summary>How does the free CV review actually work?</summary><div class="anc">Upload your resume (PDF or Word) along with the role you're targeting, your desired salary, and any notes. One of our resume strategists reviews it by hand against your target role and sends you a written report — strengths, issues, and exactly what to fix — within 24 hours.</div></details>
+      <details open><summary>How does the free CV review actually work?</summary><div class="anc">Upload your resume (PDF or Word) along with the role you're targeting, your desired salary, and any notes. One of our resume strategists reviews it by hand against your target role and sends you a written report: strengths, issues, and exactly what to fix, within 24 hours.</div></details>
       <details><summary>Is my resume stored or shared?</summary><div class="anc">Your file is used only to prepare your review and isn't sold or shared. It's emailed directly to our team to review.</div></details>
-      <details><summary>What do I get back?</summary><div class="anc">A clear, written read on what's already working in your favor, what's likely hurting your chances with both recruiters and AI screeners, and the specific changes to make — written in plain language by a person, not an automated score.</div></details>
-      <details><summary>What's included in a resume rewrite?</summary><div class="anc">A full rebuild engineered to parse cleanly, mirror the language of your target roles, and lead with quantified outcomes — written by hand, not auto-generated. Turnaround is typically a couple of days, with revisions to align on direction.</div></details>
-      <details><summary>Do you work with senior and executive resumes?</summary><div class="anc">Yes — much of our work is with experienced professionals leveling up. Senior resumes often score lower than expected because scope and impact get buried; the fixes are usually small but decisive.</div></details>
+      <details><summary>What do I get back?</summary><div class="anc">A clear, written read on what's already working in your favor, what's likely hurting your chances with both recruiters and AI screeners, and the specific changes to make, written in plain language by a person, not an automated score.</div></details>
+      <details><summary>What's included in a resume rewrite?</summary><div class="anc">A full rebuild engineered to parse cleanly, mirror the language of your target roles, and lead with quantified outcomes, written by hand, not auto-generated. Turnaround is typically a couple of days, with revisions to align on direction.</div></details>
+      <details><summary>Do you work with senior and executive resumes?</summary><div class="anc">Yes, much of our work is with experienced professionals leveling up. Senior resumes often score lower than expected because scope and impact get buried; the fixes are usually small but decisive.</div></details>
     </div>
   </div>
 </section>
@@ -465,7 +463,7 @@
               <rect x="76" y="0"   width="30" height="105" rx="1.5" fill="#7A1F2B"/>
             </g>
             <text x="132" y="128" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-weight="700" fill="#14264A" letter-spacing="0.5">RESUMERICA</text>
-            <text x="134" y="160" font-family="Calibri, Arial, sans-serif" font-size="20" font-style="italic" fill="#7A1F2B">Your American Dream. One Resume Away.</text>
+            <text x="134" y="160" font-family="Calibri, Arial, sans-serif" font-size="20" font-style="normal" fill="#7A1F2B">Your American Dream. One Resume Away.</text>
           </svg>
         </div>
         <p style="margin-top:16px;font-size:13.5px;color:var(--muted)">Resume strategy for the AI hiring era. Tailored, quiet, effective.</p>
@@ -575,7 +573,7 @@ async function submitBooking(){
     document.getElementById('okMsg').textContent=`Thanks, ${name.split(' ')[0]}. We've received your request for ${slot}. `+
       (data.confirmed?`A confirmation is on its way to ${email}.`:`We'll confirm by email at ${email} shortly.`);
   }catch(err){
-    console.error(err);toast("Couldn't send your request — please try again.");
+    console.error(err);toast("Couldn't send your request. Please try again.");
   }finally{btn.disabled=false;btn.textContent=orig;}
 }
 
@@ -596,7 +594,7 @@ async function submitReview(){
   if(!fileEl.files[0]){toast('Please attach your resume (PDF or Word).');return;}
   const file=fileEl.files[0];
   if(!/\.(pdf|doc|docx)$/i.test(file.name)){toast('Please upload a PDF or Word document.');return;}
-  if(file.size>8*1024*1024){toast('That file is over 8 MB — please upload a smaller version.');return;}
+  if(file.size>8*1024*1024){toast('That file is over 8 MB. Please upload a smaller version.');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){toast('Please enter a valid email.');return;}
   if(!roles){toast("Please tell us the role(s) you're targeting.");return;}
 
@@ -615,7 +613,7 @@ async function submitReview(){
     document.getElementById('reviewForm').style.display='none';
     document.getElementById('reviewOk').style.display='block';
   }catch(err){
-    console.error(err);toast(err.message||"Couldn't send your resume — please try again.");
+    console.error(err);toast(err.message||"Couldn't send your resume. Please try again.");
   }finally{btn.disabled=false;btn.textContent=orig;}
 }
 

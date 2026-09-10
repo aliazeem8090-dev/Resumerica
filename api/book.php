@@ -25,7 +25,7 @@ $f = [
     'goal' => clip($b['goal'] ?? '', 2000),
 ];
 
-$notified = send_mail(NOTIFY_EMAIL, "New booking request: {$f['name']} — {$f['service']}", booking_html($f), $f['email']);
+$notified = send_mail(NOTIFY_EMAIL, "New booking request: {$f['name']} ({$f['service']})", booking_html($f), $f['email']);
 if (!$notified) {
     error_log('BOOKING (email not configured): ' . json_encode($f));
     if (defined('RESEND_API_KEY') && RESEND_API_KEY !== '') json_out(['error' => 'Could not send request'], 502);
@@ -38,7 +38,7 @@ if (defined('FROM_EMAIL') && FROM_EMAIL !== '' && defined('RESEND_API_KEY') && R
         . "<p>Thanks for reaching out about <b>" . esc($f['service']) . "</b>. We've received your request"
         . ($f['date'] ? " for " . esc($f['date']) . " at " . esc($f['time']) : "")
         . " and will confirm the exact time shortly.</p>"
-        . "<p>— The Resumerica team</p>";
+        . "<p>The Resumerica team</p>";
     $confirmed = send_mail($f['email'], 'We received your Resumerica consultation request', $html, NOTIFY_EMAIL);
 }
 
