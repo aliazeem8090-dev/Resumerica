@@ -50,8 +50,6 @@
   header.nav{position:sticky;top:0;z-index:60;background:rgba(245,240,228,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
   .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
   .brand{display:flex;align-items:center;gap:11px;color:var(--navy)}
-  .brand svg{height:30px;width:auto;flex:none}
-  .brand b{font-family:var(--font);font-weight:600;font-size:22px;letter-spacing:.01em;color:var(--navy)}
   .nav-links{display:flex;align-items:center;gap:30px}
   .nav-links a{color:var(--muted);font-weight:500;font-size:14px;transition:color .15s}
   .nav-links a:hover{color:var(--navy)}
@@ -166,7 +164,6 @@
 
   footer{background:var(--bg-2);color:var(--muted);padding:20px 0 40px;border-top:1px solid var(--line-2)}
   .foot-in{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-top:48px}
-  .foot-logo svg{width:250px;height:auto;max-width:100%}
   .foot-cols{display:flex;gap:56px;flex-wrap:wrap}
   footer a{color:var(--muted)}footer a:hover{color:var(--navy)}
   footer .col b{color:var(--navy);font-weight:600;display:block;margin-bottom:13px;font-size:14px}
@@ -208,7 +205,7 @@
   @media(max-width:560px){section{padding:60px 0}.how-grid,.case-grid{grid-template-columns:1fr}.tmasonry{columns:1}.stats-in div{min-width:44%}}
   @media(max-width:480px){
     header.nav .wrap{padding:0 16px}
-    .brand b{font-size:19px}
+    .brand img{height:32px}
     .nav .btn{padding:9px 13px;font-size:13px}
     .nav-btn-full{display:none}
     .grid2{grid-template-columns:1fr}
@@ -222,8 +219,7 @@
 <header class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="#top" aria-label="Resumerica home">
-      <svg viewBox="0 0 44 40" aria-hidden="true"><rect x="0" y="18" width="11" height="22" rx="1.5" fill="#14264A"/><rect x="16.5" y="9" width="11" height="31" rx="1.5" fill="#14264A"/><rect x="33" y="0" width="11" height="40" rx="1.5" fill="#7A1F2B"/></svg>
-      <b>Resumerica</b>
+      <img src="assets/logo-mark.png" alt="Resumerica Career Services" style="height:40px;width:auto">
     </a>
     <nav class="nav-links">
       <a href="#how">How it works</a>
@@ -458,15 +454,7 @@
     <div class="foot-in">
       <div style="max-width:320px">
         <div class="foot-logo">
-          <svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" aria-label="Resumerica">
-            <g transform="translate(0, 60)">
-              <rect x="0"  y="55"  width="30" height="50"  rx="1.5" fill="#14264A"/>
-              <rect x="38" y="30"  width="30" height="75"  rx="1.5" fill="#14264A"/>
-              <rect x="76" y="0"   width="30" height="105" rx="1.5" fill="#7A1F2B"/>
-            </g>
-            <text x="132" y="128" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-weight="700" fill="#14264A" letter-spacing="0.5">RESUMERICA</text>
-            <text x="134" y="160" font-family="Calibri, Arial, sans-serif" font-size="20" font-style="normal" fill="#7A1F2B">Your American Dream. One Resume Away.</text>
-          </svg>
+          <img src="assets/logo-full.png" alt="Resumerica Career Services" style="width:280px;max-width:100%;height:auto">
         </div>
         <p style="margin-top:16px;font-size:13.5px;color:var(--muted)">Resume strategy for the AI hiring era. Tailored, quiet, effective.</p>
       </div>
