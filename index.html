@@ -206,6 +206,13 @@
     .mitem .mbook{display:none}
   }
   @media(max-width:560px){section{padding:60px 0}.how-grid,.case-grid{grid-template-columns:1fr}.tmasonry{columns:1}.stats-in div{min-width:44%}}
+  @media(max-width:480px){
+    header.nav .wrap{padding:0 16px}
+    .brand b{font-size:19px}
+    .nav .btn{padding:9px 13px;font-size:13px}
+    .nav-btn-full{display:none}
+    .grid2{grid-template-columns:1fr}
+  }
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
 </style>
 </head>
@@ -226,7 +233,7 @@
       <a href="blog.html">Insights</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <button class="btn btn-accent" onclick="openBooking('General consultation')">Book consultation</button>
+    <button class="btn btn-accent" style="white-space:nowrap" onclick="openBooking('General consultation')">Book<span class="nav-btn-full"> consultation</span></button>
   </div>
 </header>
 
